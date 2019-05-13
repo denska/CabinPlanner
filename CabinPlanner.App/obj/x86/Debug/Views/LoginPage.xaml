@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="CabinPlanner.App.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Grid x:ConnectionId='2'
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <TextBlock x:ConnectionId='3' x:Name="loginTxt" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Top" Height="90" Width="158" FontSize="50" RenderTransformOrigin="-1.022,0.462" Margin="0,341,0,0"><Run Text="Login"/><LineBreak/><Run/></TextBlock>
+            <TextBox x:ConnectionId='4' x:Name="emailField" HorizontalAlignment="Center" Margin="0,424,0,0" Text="Email" VerticalAlignment="Top" Width="400"  Height="50"/>
+            <PasswordBox x:ConnectionId='5'  x:Name="passwordField" HorizontalAlignment="Center" Margin="0,500,0,0" VerticalAlignment="Top" Width="400" Height="50"/>
+            <Button x:ConnectionId='6' x:Name="button" Content="Login" HorizontalAlignment="Center" Margin="280,555,0,0" VerticalAlignment="Top" Width="110" FontSize="20"                     />
+            <HyperlinkButton x:ConnectionId='7' Content="Register" FontSize="20"
+                                              
+                 HorizontalAlignment="Center" Margin="-330,555,0,0" VerticalAlignment="Top"/>
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                Place your content here.-->
+        </Grid>
+    </Grid>
+</Page>
+

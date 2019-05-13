@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="CabinPlanner.App.Views.FamilyPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:CabinPlanner.Model"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
+
+    <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                Place your content here.-->
+            <StackPanel>
+                <TextBox Name="NewPersonName"></TextBox>
+                <Button Click="Add_Click">Add</Button>
+                <ListView Name="People" HorizontalAlignment="Stretch" Margin="0,0,726,0" VerticalAlignment="Stretch">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Person">
+                            <TextBlock x:Name="LocationTextBlock">
+                                <Run FontWeight="Bold">Location: </Run>
+                                <LineBreak />
+                                <Run Text="{x:Bind FirstName}"></Run>
+
+                                <Run Text="{x:Bind LastName}"></Run>
+                            </TextBlock>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

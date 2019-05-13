@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="CabinPlanner.App.Views.RegisterPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d" Height="884.5" Width="1131">
+    <Grid x:ConnectionId='2'
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <TextBlock x:ConnectionId='3' x:Name="textBlock" HorizontalAlignment="Center" Margin="0,202,0,0" Text="Register" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="40"/>
+            <TextBox x:ConnectionId='4' x:Name="firstNameField" Header="First name" HorizontalAlignment="Center" Margin="0,255,0,0" Text="" VerticalAlignment="Top" Height="58" Width="370"/>
+            <TextBox x:ConnectionId='5' x:Name="lastNameField" Header="Last name" HorizontalAlignment="Center" Margin="0,318,0,0" Text="" VerticalAlignment="Top" Height="59" Width="370"/>
+            <TextBox x:ConnectionId='6' x:Name="emailField" Header="Email" InputScope="EmailNameOrAddress" HorizontalAlignment="Center" Margin="0,377,0,0" Text="" VerticalAlignment="Top" Height="56" Width="370"/>
+            <PasswordBox x:ConnectionId='7' x:Name="passwordField" Header="Password" HorizontalAlignment="Center" Margin="0,438,0,0" VerticalAlignment="Top" Width="370" Height="56"/>
+            <DatePicker x:ConnectionId='8' x:Name="birthdayField" Header="Birthday" HorizontalAlignment="Center" Margin="0,499,0,0" VerticalAlignment="Top" Height="55" Width="370"/>
+            <RadioButton x:ConnectionId='9' x:Name="isMan" Content="Man" HorizontalAlignment="Center" Margin="0,559,0,0" VerticalAlignment="Top"/>
+            <RadioButton x:ConnectionId='10' x:Name="isWoman" Content="Woman" HorizontalAlignment="Center" Margin="-250,559,0,0" VerticalAlignment="Top"/>
+            <Button x:ConnectionId='11' x:Name="registerBtn" Content="Register" HorizontalAlignment="Center" Margin="300,559,0,0" VerticalAlignment="Top"                          />
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                Place your content here.-->
+        </Grid>
+    </Grid>
+</Page>
+

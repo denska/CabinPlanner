@@ -1,0 +1,1 @@
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\CabinPlanner.App.csproj;x86

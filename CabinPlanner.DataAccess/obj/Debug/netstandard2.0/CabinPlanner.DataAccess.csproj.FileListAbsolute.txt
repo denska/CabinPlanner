@@ -1,0 +1,12 @@
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DataAccess\bin\Debug\netstandard2.0\CabinPlanner.Model.dll
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DataAccess\obj\Debug\netstandard2.0\CabinPlanner.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DataAccess\obj\Debug\netstandard2.0\CabinPlanner.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DataAccess\obj\Debug\netstandard2.0\CabinPlanner.DataAccess.AssemblyInfo.cs
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DataAccess\bin\Debug\netstandard2.0\CabinPlanner.DataAccess.deps.json
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DataAccess\bin\Debug\netstandard2.0\CabinPlanner.DataAccess.dll
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DataAccess\bin\Debug\netstandard2.0\CabinPlanner.DataAccess.pdb
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DataAccess\bin\Debug\netstandard2.0\CabinPlanner.Model.pdb
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DataAccess\obj\Debug\netstandard2.0\CabinPlanner.DataAccess.csprojAssemblyReference.cache
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DataAccess\obj\Debug\netstandard2.0\CabinPlanner.DataAccess.csproj.CopyComplete
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DataAccess\obj\Debug\netstandard2.0\CabinPlanner.DataAccess.dll
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DataAccess\obj\Debug\netstandard2.0\CabinPlanner.DataAccess.pdb

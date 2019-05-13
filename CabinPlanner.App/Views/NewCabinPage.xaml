@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="CabinPlanner.App.Views.NewCabinPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:CabinPlanner.Model"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
+    <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <TextBox x:Name="cabinNameField" HorizontalAlignment="Left" Margin="71,0,0,0" VerticalAlignment="Center" Width="363"
+                      Text="" PlaceholderText="Cabin name" Header="Cabin name" Height="66"/>
+            <TextBlock x:Name="CabinOwnerField" HorizontalAlignment="Left" Margin="71,398,0,0" Text="Cabin Owner" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Width="364" FontSize="20"/>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="71,374,0,0" Text="Cabin Owner" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="114"/>
+            <Button x:Name="addCabinBtn" Content="Add Cabin" HorizontalAlignment="Left" Margin="349,555,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.061,0.719" Click="AddCabinBtn_Click"/>
+            <ListView Name="PeopleWithoutAccess" Margin="466,199,673,467"  Header="People"  ItemsSource="{x:Bind peopleWithoutAccess}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Person">
+                        <TextBlock x:Name="LocationTextBlock">
+                                <Run Text="{x:Bind ToString()}"></Run>
+                        </TextBlock>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView Name="PeopleWithAccess" Margin="825,199,306,467" Header="People with access" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{x:Bind peopleWaccess}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Person">
+                        <TextBlock x:Name="LocationTextBlock">
+                                <Run Text="{x:Bind ToString()}"></Run>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="moveToAccessBtn" Content="->" HorizontalAlignment="Left" Margin="784,228,0,0" VerticalAlignment="Top" Click="MoveToAccessBtn_Click"/>
+            <Button x:Name="moveFromAccessBtn" Content="&lt;-" HorizontalAlignment="Left" Margin="784,265,0,0" VerticalAlignment="Top"/>
+
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                Place your content here.-->
+        </Grid>
+    </Grid>
+</Page>
