@@ -49,7 +49,7 @@ namespace CabinPlanner.App.Views
         {
             try
             {
-                var cabin = new Cabin { CabinName = cabinNameField.Text, Owner = Global.User, Calendar = new Calendar(), CabinCrew = new List<Person>(peopleWaccess) };
+                var cabin = new Cabin { CabinName = cabinNameField.Text, CabinOwner = Global.User, Calendar = new Calendar(), CabinUsers = new List<Person>(peopleWaccess) };
 
                 MyTestData.GetInstance().Cabins.Add(cabin);
 

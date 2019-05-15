@@ -13,15 +13,16 @@ namespace CabinPlanner.DataAccess
         public DbSet<Cabin> Cabins { get; set; }
         public DbSet<Calendar> Calendars { get; set; }
         public DbSet<PlannedTrip> PlannedTrips { get; set; }
-        public DbSet<Relation> Relations { get; set; }
+        //public DbSet<Relation> Relations { get; set; }
+        public DbSet<CabinsUsers> CabinsUsers { get; set; }
 
-      //  string ConnectionString = "Data Source=Donau.hiof.no;Initial Catalog=denniss;Persist Security Info=True;User ID=denniss;Password=6WVewQKT";
-      //
-        public CabinPlannerContext(DbContextOptions<CabinPlannerContext> options) : base(options) { }
-      //
-      //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-      //{
-      //    optionsBuilder.UseSqlServer(@ConnectionString);
-      //}
+        string ConnectionString = "Data Source=Donau.hiof.no;Initial Catalog=denniss;Persist Security Info=True;User ID=denniss;Password=6WVewQKT";
+      
+      //public CabinPlannerContext(DbContextOptions<CabinPlannerContext> options) : base(options) { }
+      
+      protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+      {
+          optionsBuilder.UseSqlServer(@ConnectionString);
+      }
     }
 }

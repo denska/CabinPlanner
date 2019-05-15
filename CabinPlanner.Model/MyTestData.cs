@@ -61,8 +61,8 @@ namespace CabinPlanner.Model
                     new Cabin()
                     {
                         CabinName = "Bogen",
-                        Owner = myTestData.People[0],
-                        CabinCrew = myTestData.People,
+                        CabinOwner = myTestData.People[0],
+                        CabinUsers = myTestData.People,
                         Calendar = new Calendar()
                         {
                             PlannedTrips = new List<PlannedTrip>()
@@ -86,8 +86,8 @@ namespace CabinPlanner.Model
                     new Cabin()
                     {
                         CabinName = "Skredderstolen",
-                        Owner = myTestData.People[1],
-                        CabinCrew = myTestData.People,
+                        CabinOwner = myTestData.People[1],
+                        CabinUsers = myTestData.People,
                         Calendar = new Calendar()
                         {
                             PlannedTrips = new List<PlannedTrip>()

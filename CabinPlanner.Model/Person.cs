@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace CabinPlanner.Model
@@ -19,7 +20,7 @@ namespace CabinPlanner.Model
         public Calendar Calendar { get; set; }
         public Family Family { get; set; }
 
-
+        [NotMapped]
         public List<Cabin> Cabins { get; set; }
 
         //public List<Relation> Relations { get; set; } = new List<Relation>();

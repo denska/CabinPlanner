@@ -21,7 +21,7 @@
                                 <Run x:ConnectionId='18'                          ></Run>
                                 <Run FontWeight="Bold">Owner: </Run>
                                 <LineBreak />
-                                <Run x:ConnectionId='19'                                 ></Run>
+                                <Run x:ConnectionId='19'                                      ></Run>
                         </TextBlock>
 
                     </DataTemplate>

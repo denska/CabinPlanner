@@ -60,12 +60,12 @@
                 <StackPanel x:Name="propertiesGroup1" RelativePanel.Below="itemHero">
                     <StackPanel x:Name="statusGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Text="Status" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Item.Owner}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock Text="{x:Bind ViewModel.Item.CabinOwner}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
 
                     <StackPanel x:Name="orderDateGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Text="Order date" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Item.Owner}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock Text="{x:Bind ViewModel.Item.CabinOwner}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
                 </StackPanel>
 
@@ -77,7 +77,7 @@
 
                     <StackPanel x:Name="orderTotalGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Text="Order total" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Item.Owner}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock Text="{x:Bind ViewModel.Item.CabinOwner}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
                 </StackPanel>
 

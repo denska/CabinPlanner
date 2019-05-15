@@ -27,33 +27,36 @@ namespace CabinPlanner.DataAccess.Migrations
 
                     b.Property<string>("CabinName");
 
-                    b.Property<int?>("CalendarId");
+                    b.Property<int?>("CabinOwnerPersonId");
 
-                    b.Property<int?>("OwnerPersonId");
+                    b.Property<int?>("CalendarId");
 
                     b.HasKey("CabinId");
 
-                    b.HasIndex("CalendarId");
+                    b.HasIndex("CabinOwnerPersonId");
 
-                    b.HasIndex("OwnerPersonId");
+                    b.HasIndex("CalendarId");
 
                     b.ToTable("Cabins");
                 });
 
-            modelBuilder.Entity("CabinPlanner.Model.CabinUsers", b =>
+            modelBuilder.Entity("CabinPlanner.Model.CabinsUsers", b =>
                 {
-                    b.Property<int>("CabinUsersId")
+                    b.Property<int>("CabinsUsersId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CabinId");
+                    b.Property<int?>("CabinId");
 
-                    b.HasKey("CabinUsersId");
+                    b.Property<int?>("PersonId");
 
-                    b.HasIndex("CabinId")
-                        .IsUnique();
+                    b.HasKey("CabinsUsersId");
 
-                    b.ToTable("CabinUsers");
+                    b.HasIndex("CabinId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("CabinsUsers");
                 });
 
             modelBuilder.Entity("CabinPlanner.Model.Calendar", b =>
@@ -86,8 +89,6 @@ namespace CabinPlanner.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CabinUsersId");
-
                     b.Property<int?>("CalendarId");
 
                     b.Property<DateTime>("DateOfBirth");
@@ -105,8 +106,6 @@ namespace CabinPlanner.DataAccess.Migrations
                     b.Property<string>("Password");
 
                     b.HasKey("PersonId");
-
-                    b.HasIndex("CabinUsersId");
 
                     b.HasIndex("CalendarId");
 
@@ -140,52 +139,30 @@ namespace CabinPlanner.DataAccess.Migrations
                     b.ToTable("PlannedTrips");
                 });
 
-            modelBuilder.Entity("CabinPlanner.Model.Relation", b =>
-                {
-                    b.Property<int>("RelationId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("PersonAPersonId");
-
-                    b.Property<int?>("PersonBPersonId");
-
-                    b.Property<string>("TheirRelation");
-
-                    b.HasKey("RelationId");
-
-                    b.HasIndex("PersonAPersonId");
-
-                    b.HasIndex("PersonBPersonId");
-
-                    b.ToTable("Relations");
-                });
-
             modelBuilder.Entity("CabinPlanner.Model.Cabin", b =>
                 {
+                    b.HasOne("CabinPlanner.Model.Person", "CabinOwner")
+                        .WithMany()
+                        .HasForeignKey("CabinOwnerPersonId");
+
                     b.HasOne("CabinPlanner.Model.Calendar", "Calendar")
                         .WithMany()
                         .HasForeignKey("CalendarId");
-
-                    b.HasOne("CabinPlanner.Model.Person", "Owner")
-                        .WithMany("Cabins")
-                        .HasForeignKey("OwnerPersonId");
                 });
 
-            modelBuilder.Entity("CabinPlanner.Model.CabinUsers", b =>
+            modelBuilder.Entity("CabinPlanner.Model.CabinsUsers", b =>
                 {
-                    b.HasOne("CabinPlanner.Model.Cabin")
-                        .WithOne("CabinUsers")
-                        .HasForeignKey("CabinPlanner.Model.CabinUsers", "CabinId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("CabinPlanner.Model.Cabin", "Cabin")
+                        .WithMany()
+                        .HasForeignKey("CabinId");
+
+                    b.HasOne("CabinPlanner.Model.Person", "person")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
                 });
 
             modelBuilder.Entity("CabinPlanner.Model.Person", b =>
                 {
-                    b.HasOne("CabinPlanner.Model.CabinUsers")
-                        .WithMany("CabinUsersList")
-                        .HasForeignKey("CabinUsersId");
-
                     b.HasOne("CabinPlanner.Model.Calendar", "Calendar")
                         .WithMany()
                         .HasForeignKey("CalendarId");
@@ -204,17 +181,6 @@ namespace CabinPlanner.DataAccess.Migrations
                     b.HasOne("CabinPlanner.Model.Person", "Planner")
                         .WithMany()
                         .HasForeignKey("PlannerPersonId");
-                });
-
-            modelBuilder.Entity("CabinPlanner.Model.Relation", b =>
-                {
-                    b.HasOne("CabinPlanner.Model.Person", "PersonA")
-                        .WithMany()
-                        .HasForeignKey("PersonAPersonId");
-
-                    b.HasOne("CabinPlanner.Model.Person", "PersonB")
-                        .WithMany()
-                        .HasForeignKey("PersonBPersonId");
                 });
 #pragma warning restore 612, 618
         }

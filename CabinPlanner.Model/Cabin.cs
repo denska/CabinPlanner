@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace CabinPlanner.Model
@@ -11,13 +12,13 @@ namespace CabinPlanner.Model
 
         public string CabinName { get; set; }
 
-        public Person Owner { get; set; }
+        public Person CabinOwner { get; set; }
 
         public Calendar Calendar { get; set; }
 
-        public List<Person> CabinCrew { get; set; } = new List<Person>();
+        [NotMapped]
+        public List<Person> CabinUsers { get; set; }
 
-    //public CabinUsers CabinUsers { get; set;}
 
-}
+    }
 }

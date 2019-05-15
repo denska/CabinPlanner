@@ -21,7 +21,7 @@
                                 <Run Text="{x:Bind CabinName}"></Run>
                                 <Run FontWeight="Bold">Owner: </Run>
                                 <LineBreak />
-                                <Run Text="{x:Bind Owner.ToString()}"></Run>
+                                <Run Text="{x:Bind CabinOwner.ToString()}"></Run>
                         </TextBlock>
 
                     </DataTemplate>
