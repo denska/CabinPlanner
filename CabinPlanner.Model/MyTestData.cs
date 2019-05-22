@@ -12,6 +12,7 @@ namespace CabinPlanner.Model
         public List<Cabin> Cabins { get; set; }
         public List<Family> Families { get; set; }
         public List<Calendar> Calendars { get; set; }
+        public List<CabinUser> CabinUsers { get; set; }
 
         private MyTestData()
         {
@@ -62,7 +63,6 @@ namespace CabinPlanner.Model
                     {
                         CabinName = "Bogen",
                         CabinOwner = myTestData.People[0],
-                        CabinUsers = myTestData.People,
                         Calendar = new Calendar()
                         {
                             PlannedTrips = new List<PlannedTrip>()
@@ -87,7 +87,6 @@ namespace CabinPlanner.Model
                     {
                         CabinName = "Skredderstolen",
                         CabinOwner = myTestData.People[1],
-                        CabinUsers = myTestData.People,
                         Calendar = new Calendar()
                         {
                             PlannedTrips = new List<PlannedTrip>()
@@ -108,6 +107,22 @@ namespace CabinPlanner.Model
                             }
                         }
                     }
+                };
+                myTestData.CabinUsers = new List<CabinUser>() {
+                   new CabinUser()
+                   {
+                       CabinId = myTestData.Cabins[0].CabinId,
+                       Cabin = myTestData.Cabins[0],
+                       PersonId = myTestData.People[0].PersonId,
+                       Person = myTestData.People[0]
+                   },
+                   new CabinUser()
+                   {
+                       CabinId = myTestData.Cabins[0].CabinId,
+                       Cabin = myTestData.Cabins[0],
+                       PersonId = myTestData.People[1].PersonId,
+                       Person = myTestData.People[1]
+                   }
                 };
             }
 

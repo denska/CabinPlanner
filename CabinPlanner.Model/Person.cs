@@ -6,22 +6,27 @@ using System.Text;
 
 namespace CabinPlanner.Model
 {
+    [Table("Person")]
     public class Person
     {
         public int PersonId { get; set; }
+        [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
+        [Required]
+        public string Email { get; set; }
+        [Required]
+        public string Password { get; set; }
+        [Required]
         public bool IsMan { get; set; }
 
-        public string Email { get; set; }
-        public string Password { get; set; }
 
         public DateTime DateOfBirth { get; set; }
         public Calendar Calendar { get; set; }
         public Family Family { get; set; }
 
-        [NotMapped]
-        public List<Cabin> Cabins { get; set; }
+        public ICollection<CabinUser> CabinsAccess { get; } = new List<CabinUser>();
 
         //public List<Relation> Relations { get; set; } = new List<Relation>();
 

@@ -32,7 +32,7 @@ namespace CabinPlanner.App.Views
 
             var result = await _httpClient.GetAsync(Global.PeopleBaseUri);
             var json = await result.Content.ReadAsStringAsync();
-            var cabins = JsonConvert.DeserializeObject<Cabin[]>(json);
+            var cabins = JsonConvert.DeserializeObject<CabinUser[]>(json);
 
             
 

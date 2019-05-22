@@ -14,7 +14,7 @@ namespace CabinPlanner.DataAccess
         public DbSet<Calendar> Calendars { get; set; }
         public DbSet<PlannedTrip> PlannedTrips { get; set; }
         //public DbSet<Relation> Relations { get; set; }
-        public DbSet<CabinsUsers> CabinsUsers { get; set; }
+        public DbSet<CabinUser> CabinsUsers { get; set; }
 
         string ConnectionString = "Data Source=Donau.hiof.no;Initial Catalog=denniss;Persist Security Info=True;User ID=denniss;Password=6WVewQKT";
       
@@ -24,5 +24,23 @@ namespace CabinPlanner.DataAccess
       {
           optionsBuilder.UseSqlServer(@ConnectionString);
       }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CabinUser>()
+                .HasKey(sc => new { sc.PersonId, sc.CabinId });
+            modelBuilder.Entity<CabinUser>()
+                .HasOne(sc => sc.Person)
+                .WithMany(s => s.CabinsAccess)
+                .HasForeignKey(sc => sc.PersonId);
+            modelBuilder.Entity<CabinUser>()
+                .HasOne(sc => sc.Cabin)
+                .WithMany(c => c.CabinUsers)
+                .HasForeignKey(sc => sc.CabinId);
+        }
+
     }
+
+
 }

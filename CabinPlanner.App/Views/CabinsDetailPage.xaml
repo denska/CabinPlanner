@@ -53,31 +53,31 @@
                     x:Name="title"
                     RelativePanel.AlignTopWithPanel="True"
                     RelativePanel.RightOf="itemHero"
-                    Text="{x:Bind ViewModel.Item.CabinName, Mode=OneWay}"
+                    Text="{x:Bind ViewModel.Item.Cabin.CabinName, Mode=OneWay}"
                     Style="{ThemeResource TitleTextBlockStyle}"
                     Margin="{StaticResource XXSmallTopMargin}" />
 
                 <StackPanel x:Name="propertiesGroup1" RelativePanel.Below="itemHero">
                     <StackPanel x:Name="statusGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Text="Status" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Item.CabinOwner}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock Text="{x:Bind ViewModel.Item.Cabin.CabinOwner}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
 
                     <StackPanel x:Name="orderDateGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Text="Order date" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Item.CabinOwner}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock Text="{x:Bind ViewModel.Item.Cabin.CabinOwner}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel x:Name="propertiesGroup2" RelativePanel.Below="propertiesGroup1">
                     <StackPanel x:Name="shipToGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Text="Ship to" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Item.CabinName}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock Text="{x:Bind ViewModel.Item.Cabin.CabinName}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
 
                     <StackPanel x:Name="orderTotalGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Text="Order total" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock Text="{x:Bind ViewModel.Item.CabinOwner}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock Text="{x:Bind ViewModel.Item.Cabin.CabinOwner}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
                 </StackPanel>
 

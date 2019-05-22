@@ -23,9 +23,10 @@ namespace CabinPlanner.App.Core.Services
         private static IEnumerable<Cabin> _allOrders;
 
         // TODO WTS: Remove this once your ContentGrid page is displaying real data.
-        public static ObservableCollection<Cabin> GetContentGridData(Person user)
+        public static ObservableCollection<Cabin> GetContentGridData(List<Cabin> cabins)
         {
-            _allOrders = user.Cabins;
+            //_allOrders = user.Cabins;
+            _allOrders = cabins;
 
             if (_allOrders == null)
             {

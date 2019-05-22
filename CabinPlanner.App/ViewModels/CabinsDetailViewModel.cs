@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using CabinPlanner.App.Core.Models;
@@ -10,9 +11,9 @@ namespace CabinPlanner.App.ViewModels
 {
     public class CabinsDetailViewModel : Observable
     {
-        private Cabin _item;
+        private CabinUser _item;
 
-        public Cabin Item
+        public CabinUser Item
         {
             get { return _item; }
             set { Set(ref _item, value); }
@@ -24,7 +25,7 @@ namespace CabinPlanner.App.ViewModels
 
         public void Initialize(long orderId)
         {
-            var data = CabinsDataService.GetContentGridData(Global.User);
+            var data = (Global.User.CabinsAccess);
             Item = data.First(i => i.CabinId == orderId);
         }
     }

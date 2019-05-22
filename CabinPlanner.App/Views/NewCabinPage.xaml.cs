@@ -49,14 +49,19 @@ namespace CabinPlanner.App.Views
         {
             try
             {
-                var cabin = new Cabin { CabinName = cabinNameField.Text, CabinOwner = Global.User, Calendar = new Calendar(), CabinUsers = new List<Person>(peopleWaccess) };
+                var cabin = new Cabin { CabinName = cabinNameField.Text, CabinOwner = Global.User, Calendar = new Calendar() };
 
                 MyTestData.GetInstance().Cabins.Add(cabin);
 
-                if (Global.User.Cabins == null)
-                    Global.User.Cabins = new List<Cabin>();
+                if (Global.User.CabinsAccess == null)
+                    
 
-                Global.User.Cabins.Add(cabin);
+                Global.User.CabinsAccess.Add(new CabinUser() {CabinId = cabin.CabinId, Cabin = cabin, PersonId = Global.User.PersonId, Person = Global.User });
+
+                foreach (Person p in peopleWaccess)
+                {
+                    Global.User.CabinsAccess.Add(new CabinUser() { CabinId = cabin.CabinId, Cabin = cabin, PersonId = p.PersonId, Person = p });
+                }
 
                 //Global.User.Cabins.Add(cabin);
                 /*

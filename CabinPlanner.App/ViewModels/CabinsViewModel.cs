@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -23,7 +24,11 @@ namespace CabinPlanner.App.ViewModels
             get
             {
                 // TODO WTS: Replace this with your actual data
-                return CabinsDataService.GetContentGridData(Global.User);
+                List<Cabin> cabins = new List<Cabin>();
+                foreach (CabinUser cabinUser in Global.User.CabinsAccess)
+                    cabins.Add(cabinUser.Cabin);
+
+                return CabinsDataService.GetContentGridData(cabins);
             }
         }
 

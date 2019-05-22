@@ -53,31 +53,31 @@
                     x:Name="title"
                     RelativePanel.AlignTopWithPanel="True"
                     RelativePanel.RightOf="itemHero"
-                                                                         
+                                                                               
                     Style="{ThemeResource TitleTextBlockStyle}"
                     Margin="{StaticResource XXSmallTopMargin}" />
 
                 <StackPanel x:ConnectionId='6' x:Name="propertiesGroup1" RelativePanel.Below="itemHero">
                     <StackPanel x:ConnectionId='12' x:Name="statusGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Text="Status" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock x:ConnectionId='15'                                           Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock x:ConnectionId='15'                                                 Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
 
                     <StackPanel x:ConnectionId='13' x:Name="orderDateGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Text="Order date" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock x:ConnectionId='14'                                           Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock x:ConnectionId='14'                                                 Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel x:ConnectionId='7' x:Name="propertiesGroup2" RelativePanel.Below="propertiesGroup1">
                     <StackPanel x:ConnectionId='8' x:Name="shipToGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Text="Ship to" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock x:ConnectionId='11'                                          Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock x:ConnectionId='11'                                                Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
 
                     <StackPanel x:ConnectionId='9' x:Name="orderTotalGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Text="Order total" Style="{StaticResource DetailSubTitleStyle}" />
-                        <TextBlock x:ConnectionId='10'                                           Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                        <TextBlock x:ConnectionId='10'                                                 Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
                 </StackPanel>
 

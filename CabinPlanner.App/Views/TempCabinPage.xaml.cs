@@ -21,7 +21,7 @@ namespace CabinPlanner.App.Views
 
         private void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Cabins.ItemsSource = Global.User.Cabins;
+            Cabins.ItemsSource = Global.User.CabinsAccess;
             addTripBtn.IsEnabled = false;
         }
 
