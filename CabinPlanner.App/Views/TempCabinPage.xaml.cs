@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using CabinPlanner.App.ViewModels;
 using CabinPlanner.Model;
+using Newtonsoft.Json;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.Web.Http;
 
 namespace CabinPlanner.App.Views
 {
@@ -13,14 +16,27 @@ namespace CabinPlanner.App.Views
         DateTime fromDate;
         DateTime toDate;
 
+        static Uri CabinsUsers = new Uri("http://localhost:52981/api/cabinsusers");
+
+        HttpClient _httpClient = new HttpClient();
 
         public TempCabinPage()
         {
             InitializeComponent();
         }
 
-        private void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            var result = await _httpClient.GetAsync(CabinsUsers);
+            var json = await result.Content.ReadAsStringAsync();
+            var cabinUsers = JsonConvert.DeserializeObject<CabinUser[]>(json);
+
+            foreach (CabinUser cu in cabinUsers)
+            {
+                if (cu.PersonId == Global.User.PersonId)
+                    Global.User.CabinsAccess.Add(cu);
+            }
+
             Cabins.ItemsSource = Global.User.CabinsAccess;
             addTripBtn.IsEnabled = false;
         }

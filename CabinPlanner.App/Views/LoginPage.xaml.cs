@@ -15,6 +15,7 @@ namespace CabinPlanner.App.Views
         static Uri PeopleBaseUri = new Uri("http://localhost:52981/api/people");
         HttpClient _httpClient = new HttpClient();
 
+        ICollection<Person> people;
 
         public LoginPage()
         {
@@ -25,23 +26,23 @@ namespace CabinPlanner.App.Views
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            /*
+            
             var result = await _httpClient.GetAsync(PeopleBaseUri);
             var json = await result.Content.ReadAsStringAsync();
             people = JsonConvert.DeserializeObject<Person[]>(json);
-            */
+            
         }
 
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            /*
+            
             var result = await _httpClient.GetAsync(PeopleBaseUri);
             var json = await result.Content.ReadAsStringAsync();
             people = JsonConvert.DeserializeObject<Person[]>(json);
-            */
+          
             
-            foreach (Person p in MyTestData.GetInstance().People)
+            foreach (Person p in people)
             {
                 if (p.Email == emailField.Text && p.Password == passwordField.Password)
                 {

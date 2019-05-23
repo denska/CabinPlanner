@@ -19,15 +19,13 @@
             <StackPanel>
                 <TextBox Name="NewPersonName"></TextBox>
                 <Button Click="Add_Click">Add</Button>
-                <ListView Name="People" HorizontalAlignment="Stretch" Margin="0,0,726,0" VerticalAlignment="Stretch">
+                <ListView Name="Families" HorizontalAlignment="Stretch" Margin="0,0,726,0" VerticalAlignment="Stretch">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:Person">
+                        <DataTemplate x:DataType="model:Family">
                             <TextBlock x:Name="LocationTextBlock">
-                                <Run FontWeight="Bold">Location: </Run>
+                                <Run FontWeight="Bold">Family: </Run>
                                 <LineBreak />
-                                <Run Text="{x:Bind FirstName}"></Run>
-
-                                <Run Text="{x:Bind LastName}"></Run>
+                                <Run Text="{x:Bind FamiliyName}"></Run>
                             </TextBlock>
 
                         </DataTemplate>

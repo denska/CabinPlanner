@@ -3,6 +3,7 @@
 using CabinPlanner.Model;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace CabinPlanner.DataAccess
 {
@@ -17,13 +18,8 @@ namespace CabinPlanner.DataAccess
         public DbSet<CabinUser> CabinsUsers { get; set; }
 
         string ConnectionString = "Data Source=Donau.hiof.no;Initial Catalog=denniss;Persist Security Info=True;User ID=denniss;Password=6WVewQKT";
-      
-      //public CabinPlannerContext(DbContextOptions<CabinPlannerContext> options) : base(options) { }
-      
-      protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-      {
-          optionsBuilder.UseSqlServer(@ConnectionString);
-      }
+
+        public CabinPlannerContext(DbContextOptions<CabinPlannerContext> options) : base(options) { }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,6 +35,20 @@ namespace CabinPlanner.DataAccess
                 .WithMany(c => c.CabinUsers)
                 .HasForeignKey(sc => sc.CabinId);
         }
+
+        public class EntertainmentContextFactory : IDesignTimeDbContextFactory<CabinPlannerContext>
+        {
+            public CabinPlannerContext CreateDbContext(string[] args)
+            {
+                var connection = "Data Source=Donau.hiof.no;Initial Catalog=denniss;Persist Security Info=True;User ID=denniss;Password=6WVewQKT";
+
+                var optionsBuilder = new DbContextOptionsBuilder<CabinPlannerContext>();
+                optionsBuilder.UseSqlServer(connection, x => x.MigrationsAssembly("Entertainment.MaintainDatabase.ConsoleApp"));
+
+                return new CabinPlannerContext(optionsBuilder.Options);
+            }
+        }
+
 
     }
 

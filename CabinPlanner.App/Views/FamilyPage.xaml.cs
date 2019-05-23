@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using CabinPlanner.App.ViewModels;
 using CabinPlanner.Model;
 using Newtonsoft.Json;
@@ -14,6 +14,8 @@ namespace CabinPlanner.App.Views
         public FamilyViewModel ViewModel { get; } = new FamilyViewModel();
 
         static Uri PeopleBaseUri = new Uri("http://localhost:52981/api/people");
+        static Uri FamiliesBaseUri = new Uri("http://localhost:52981/api/familes");
+
         HttpClient _httpClient = new HttpClient();
 
 
@@ -24,27 +26,31 @@ namespace CabinPlanner.App.Views
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var result = await _httpClient.GetAsync(PeopleBaseUri);
+            var result = await _httpClient.GetAsync(FamiliesBaseUri);
             var json = await result.Content.ReadAsStringAsync();
-            var people = JsonConvert.DeserializeObject<Person[]>(json);
+            var families = JsonConvert.DeserializeObject<Family[]>(json);
 
-            People.ItemsSource = people;
+            Families.ItemsSource = families;
         }
 
 
         private async void Add_Click(object sender, RoutedEventArgs e)
         {
-            var person = new Person { FirstName = NewPersonName.Text.Split(' ')[0], LastName = NewPersonName.Text.Split(' ')[1] };
-            var json = JsonConvert.SerializeObject(person);
+           var familie = (Family)Families.SelectedItem;
 
-            var result = await _httpClient.PostAsync(PeopleBaseUri, new HttpStringContent(json, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
+            Global.User.Family = familie;
+           
+           var json = JsonConvert.SerializeObject(Global.User);
+           
+           var result = await _httpClient.PostAsync(PeopleBaseUri, new HttpStringContent(json, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
+           
+           // read back from db
 
-            // read back from db
-            result = await _httpClient.GetAsync(PeopleBaseUri);
-            json = await result.Content.ReadAsStringAsync();
-            var people = JsonConvert.DeserializeObject<Person[]>(json);
+           result = await _httpClient.GetAsync(FamiliesBaseUri);
+           json = await result.Content.ReadAsStringAsync();
 
-            People.ItemsSource = people;
+           var families = JsonConvert.DeserializeObject<Family[]>(json);          
+           Families.ItemsSource = families;
         }
     }
 }
