@@ -26,7 +26,7 @@ namespace CabinPlanner.Model
         public Calendar Calendar { get; set; }
         public Family Family { get; set; }
 
-        public ICollection<CabinUser> CabinsAccess { get; } = new List<CabinUser>();
+        public ICollection<CabinUser> AccessToCabins { get; } = new List<CabinUser>();
 
         //public List<Relation> Relations { get; set; } = new List<Relation>();
 

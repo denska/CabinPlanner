@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>6DC8421A96CD40F11F63F52A3A6ABBA87266F21957D9B4CE1D149B2B8214AA52</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>E9C8D69057D0120D59FAE9536FD4CC902987621BF51A33A5C8DAA14DD4E603EF</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>B3B03610-6883-4818-A3AD-D31F2E652B8C_1.0.0.0_x86__609hsezh83tzp</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>B3B03610-6883-4818-A3AD-D31F2E652B8C_609hsezh83tzp!App</RegisteredUserModeAppID>
     <RegisteredPackageID>B3B03610-6883-4818-A3AD-D31F2E652B8C</RegisteredPackageID>
@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-05-23T20:19:57.800</Modified>
+      <Modified>2019-05-27T12:12:13.568</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\CabinPlanner.App.exe">
       <PackagePath>entrypoint\CabinPlanner.App.exe</PackagePath>
-      <Modified>2019-05-23T20:19:56.652</Modified>
+      <Modified>2019-05-27T12:12:10.720</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\.nuget\packages\colorcode.core\2.0.6\lib\netstandard1.4\ColorCode.Core.dll">
       <PackagePath>ColorCode.Core.dll</PackagePath>
@@ -168,11 +168,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App.Core\bin\Debug\netstandard2.0\CabinPlanner.App.Core.dll">
       <PackagePath>CabinPlanner.App.Core.dll</PackagePath>
-      <Modified>2019-05-23T19:42:14.507</Modified>
+      <Modified>2019-05-27T12:12:04.156</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Model\bin\Debug\netstandard2.0\CabinPlanner.Model.dll">
       <PackagePath>CabinPlanner.Model.dll</PackagePath>
-      <Modified>2019-05-23T19:42:13.727</Modified>
+      <Modified>2019-05-27T12:12:03.470</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\.nuget\packages\robmikh.compositionsurfacefactory\0.7.3\lib\uap10.0\Robmikh.CompositionSurfaceFactory.winmd">
       <PackagePath>Robmikh.CompositionSurfaceFactory.winmd</PackagePath>
@@ -230,71 +230,71 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.341</Modified>
+      <Modified>2019-05-27T12:12:10.496</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Styles\Page.xbf">
       <PackagePath>Styles\Page.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.339</Modified>
+      <Modified>2019-05-27T12:12:10.495</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Styles\_Colors.xbf">
       <PackagePath>Styles\_Colors.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.339</Modified>
+      <Modified>2019-05-27T12:12:10.495</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Styles\_FontSizes.xbf">
       <PackagePath>Styles\_FontSizes.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.340</Modified>
+      <Modified>2019-05-27T12:12:10.495</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Styles\_Thickness.xbf">
       <PackagePath>Styles\_Thickness.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.340</Modified>
+      <Modified>2019-05-27T12:12:10.496</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Styles\TextBlock.xbf">
       <PackagePath>Styles\TextBlock.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.340</Modified>
+      <Modified>2019-05-27T12:12:10.496</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Views\CabinsDetailPage.xbf">
       <PackagePath>Views\CabinsDetailPage.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.328</Modified>
+      <Modified>2019-05-27T12:12:10.484</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Views\CabinsPage.xbf">
       <PackagePath>Views\CabinsPage.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.341</Modified>
+      <Modified>2019-05-27T12:12:10.497</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Views\FamilyPage.xbf">
       <PackagePath>Views\FamilyPage.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.342</Modified>
+      <Modified>2019-05-27T12:12:10.497</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Views\LoginPage.xbf">
       <PackagePath>Views\LoginPage.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.342</Modified>
+      <Modified>2019-05-27T12:12:10.497</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.342</Modified>
+      <Modified>2019-05-27T12:12:10.498</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Views\NewCabinPage.xbf">
       <PackagePath>Views\NewCabinPage.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.343</Modified>
+      <Modified>2019-05-27T12:12:10.498</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Views\RegisterPage.xbf">
       <PackagePath>Views\RegisterPage.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.343</Modified>
+      <Modified>2019-05-27T12:12:10.498</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Views\RelationsPage.xbf">
       <PackagePath>Views\RelationsPage.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.343</Modified>
+      <Modified>2019-05-27T12:12:10.498</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Views\SettingsPage.xbf">
       <PackagePath>Views\SettingsPage.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.343</Modified>
+      <Modified>2019-05-27T12:12:10.499</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Views\ShellPage.xbf">
       <PackagePath>Views\ShellPage.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.344</Modified>
+      <Modified>2019-05-27T12:12:10.499</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Views\TempCabinPage.xbf">
       <PackagePath>Views\TempCabinPage.xbf</PackagePath>
-      <Modified>2019-05-23T20:19:56.344</Modified>
+      <Modified>2019-05-27T12:12:10.499</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.17763.0\\redist\Debug\x86\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -454,11 +454,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2019-04-30T15:16:24.397</Modified>
+      <Modified>2019-05-27T12:12:10.947</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.App\bin\x86\Debug\Core\CabinPlanner.App.exe">
       <PackagePath>CabinPlanner.App.exe</PackagePath>
-      <Modified>2019-05-23T20:19:57.794</Modified>
+      <Modified>2019-05-27T12:12:13.561</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

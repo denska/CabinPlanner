@@ -25,7 +25,7 @@ namespace CabinPlanner.App.ViewModels
 
         public void Initialize(long orderId)
         {
-            var data = (Global.User.CabinsAccess);
+            var data = (Global.User.AccessToCabins);
             Item = data.First(i => i.CabinId == orderId);
         }
     }

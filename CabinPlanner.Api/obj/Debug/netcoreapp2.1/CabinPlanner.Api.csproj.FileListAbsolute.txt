@@ -6,7 +6,6 @@ C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\bin\Debug\netcoreapp2
 C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\bin\Debug\netcoreapp2.1\CabinPlanner.Model.dll
 C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\bin\Debug\netcoreapp2.1\CabinPlanner.DataAccess.pdb
 C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\bin\Debug\netcoreapp2.1\CabinPlanner.Model.pdb
-C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\obj\Debug\netcoreapp2.1\CabinPlanner.Api.csprojAssemblyReference.cache
 C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\obj\Debug\netcoreapp2.1\CabinPlanner.Api.csproj.CoreCompileInputs.cache
 C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\obj\Debug\netcoreapp2.1\CabinPlanner.Api.RazorAssemblyInfo.cache
 C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\obj\Debug\netcoreapp2.1\CabinPlanner.Api.RazorAssemblyInfo.cs
@@ -17,3 +16,4 @@ C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\obj\Debug\netcoreapp2
 C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\bin\Debug\netcoreapp2.1\CabinPlanner.Api.pdb
 C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\obj\Debug\netcoreapp2.1\CabinPlanner.Api.dll
 C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\obj\Debug\netcoreapp2.1\CabinPlanner.Api.pdb
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Api\obj\Debug\netcoreapp2.1\CabinPlanner.Api.csprojAssemblyReference.cache

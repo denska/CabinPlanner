@@ -25,7 +25,7 @@ namespace CabinPlanner.App.ViewModels
             {
                 // TODO WTS: Replace this with your actual data
                 List<Cabin> cabins = new List<Cabin>();
-                foreach (CabinUser cabinUser in Global.User.CabinsAccess)
+                foreach (CabinUser cabinUser in Global.User.AccessToCabins)
                     cabins.Add(cabinUser.Cabin);
 
                 return CabinsDataService.GetContentGridData(cabins);

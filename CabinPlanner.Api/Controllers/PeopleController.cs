@@ -44,6 +44,15 @@ namespace CabinPlanner.Api.Controllers
                 return NotFound();
             }
 
+            /*
+            if (true)  // include course information
+                _context.People
+                    .Where(s => s.PersonId == id)
+                    .Include(s => s.CabinsAccess)
+                    .ThenInclude(cu => cu.Cabin)
+                    .Load();
+            */
+
             return Ok(person);
         }
 

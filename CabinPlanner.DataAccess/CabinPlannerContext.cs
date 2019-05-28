@@ -28,7 +28,7 @@ namespace CabinPlanner.DataAccess
                 .HasKey(sc => new { sc.PersonId, sc.CabinId });
             modelBuilder.Entity<CabinUser>()
                 .HasOne(sc => sc.Person)
-                .WithMany(s => s.CabinsAccess)
+                .WithMany(s => s.AccessToCabins)
                 .HasForeignKey(sc => sc.PersonId);
             modelBuilder.Entity<CabinUser>()
                 .HasOne(sc => sc.Cabin)

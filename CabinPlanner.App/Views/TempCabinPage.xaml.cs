@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CabinPlanner.App.ViewModels;
 using CabinPlanner.Model;
 using Newtonsoft.Json;
@@ -11,12 +12,14 @@ namespace CabinPlanner.App.Views
 {
     public sealed partial class TempCabinPage : Page
     {
+
         public TempCabinViewModel ViewModel { get; } = new TempCabinViewModel();
 
         DateTime fromDate;
         DateTime toDate;
 
-        static Uri CabinsUsers = new Uri("http://localhost:52981/api/cabinsusers");
+        static Uri CabinsUsersUri = new Uri("http://localhost:52981/api/cabinusers");
+        static Uri CabinsUri = new Uri("http://localhost:52981/api/cabins");
 
         HttpClient _httpClient = new HttpClient();
 
@@ -27,17 +30,25 @@ namespace CabinPlanner.App.Views
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var result = await _httpClient.GetAsync(CabinsUsers);
+            var result = await _httpClient.GetAsync(CabinsUsersUri);
             var json = await result.Content.ReadAsStringAsync();
             var cabinUsers = JsonConvert.DeserializeObject<CabinUser[]>(json);
+
+            var cresult = await _httpClient.GetAsync(CabinsUri);
+            var cjson = await cresult.Content.ReadAsStringAsync();
+            var cabins = JsonConvert.DeserializeObject<CabinUser[]>(cjson);
+
+            var b = new HttpResponseMessage();
 
             foreach (CabinUser cu in cabinUsers)
             {
                 if (cu.PersonId == Global.User.PersonId)
-                    Global.User.CabinsAccess.Add(cu);
+                    b = await _httpClient.GetAsync(new Uri(CabinsUri + "/" + cu.CabinId.ToString()));
+                    Cabin c = (Cabin)b.Content;
+                    Global.User.AccessToCabins.Add(cu);
             }
 
-            Cabins.ItemsSource = Global.User.CabinsAccess;
+            //Cabins.ItemsSource = Global.User.CabinsAccess;
             addTripBtn.IsEnabled = false;
         }
 

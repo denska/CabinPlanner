@@ -53,14 +53,15 @@ namespace CabinPlanner.App.Views
 
                 MyTestData.GetInstance().Cabins.Add(cabin);
 
-                if (Global.User.CabinsAccess == null)
+                if (Global.User.AccessToCabins == null)
                     
 
-                Global.User.CabinsAccess.Add(new CabinUser() {CabinId = cabin.CabinId, Cabin = cabin, PersonId = Global.User.PersonId, Person = Global.User });
+                Global.User.AccessToCabins.Add(new CabinUser() {CabinId = cabin.CabinId, Cabin = cabin, PersonId = Global.User.PersonId, Person = Global.User });
 
                 foreach (Person p in peopleWaccess)
                 {
-                    Global.User.CabinsAccess.Add(new CabinUser() { CabinId = cabin.CabinId, Cabin = cabin, PersonId = p.PersonId, Person = p });
+                    
+                    Global.User.AccessToCabins.Add(new CabinUser() { CabinId = cabin.CabinId, Cabin = cabin, PersonId = p.PersonId, Person = p });
                 }
 
                 //Global.User.Cabins.Add(cabin);
