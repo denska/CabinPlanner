@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CabinPlanner.App.DataAccess;
 using CabinPlanner.App.ViewModels;
 using CabinPlanner.Model;
 using Newtonsoft.Json;
@@ -15,11 +16,12 @@ namespace CabinPlanner.App.Views
 
         public TempCabinViewModel ViewModel { get; } = new TempCabinViewModel();
 
+        private People peopleDataAccess = new People();
+        private Cabins cabinsDataAccess = new Cabins();
+
         DateTime fromDate;
         DateTime toDate;
 
-        static Uri CabinsUsersUri = new Uri("http://localhost:52981/api/cabinusers");
-        static Uri CabinsUri = new Uri("http://localhost:52981/api/cabins");
 
         HttpClient _httpClient = new HttpClient();
 
@@ -30,25 +32,7 @@ namespace CabinPlanner.App.Views
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var result = await _httpClient.GetAsync(CabinsUsersUri);
-            var json = await result.Content.ReadAsStringAsync();
-            var cabinUsers = JsonConvert.DeserializeObject<CabinUser[]>(json);
-
-            var cresult = await _httpClient.GetAsync(CabinsUri);
-            var cjson = await cresult.Content.ReadAsStringAsync();
-            var cabins = JsonConvert.DeserializeObject<CabinUser[]>(cjson);
-
-            var b = new HttpResponseMessage();
-
-            foreach (CabinUser cu in cabinUsers)
-            {
-                if (cu.PersonId == Global.User.PersonId)
-                    b = await _httpClient.GetAsync(new Uri(CabinsUri + "/" + cu.CabinId.ToString()));
-                    Cabin c = (Cabin)b.Content;
-                    Global.User.AccessToCabins.Add(cu);
-            }
-
-            //Cabins.ItemsSource = Global.User.CabinsAccess;
+            Cabins.ItemsSource = await peopleDataAccess.GetPersonCabinsAsync(Global.User);
             addTripBtn.IsEnabled = false;
         }
 
@@ -61,8 +45,9 @@ namespace CabinPlanner.App.Views
         {
             Global.CurrentCabin = (Cabin)Cabins.SelectedItem;
 
-           // if (Global.CurrentCabin.Calendar.PlannedTrips != null)
-           //     CommingTrips.ItemsSource = Global.CurrentCabin.Calendar.PlannedTrips;
+            if (Global.CurrentCabin.Calendar != null)
+                if (Global.CurrentCabin.Calendar.PlannedTrips != null)
+                    CommingTrips.ItemsSource = Global.CurrentCabin.Calendar.PlannedTrips;
 
         }
 
@@ -92,21 +77,32 @@ namespace CabinPlanner.App.Views
                 Comment = descriptionField.Text
             };
 
-            if (Global.CurrentCabin.Calendar.PlannedTrips == null)
+            if (Global.CurrentCabin.Calendar == null)
+            {
+                Global.CurrentCabin.Calendar = new Calendar();
+                Global.CurrentCabin.Calendar.PlannedTrips = new List<PlannedTrip>();
+            }
+            else if (Global.CurrentCabin.Calendar.PlannedTrips == null)
                 Global.CurrentCabin.Calendar.PlannedTrips = new List<PlannedTrip>();
 
             Global.CurrentCabin.Calendar.PlannedTrips.Add(trip);
+
+
             if (Global.User.Calendar == null)
             {
                 Global.User.Calendar = new Calendar();
                 Global.User.Calendar.PlannedTrips = new List<PlannedTrip>();
             }
-            else
-            {
-                Global.User.Calendar.PlannedTrips.Add(trip);
-            }
+            else if (Global.User.Calendar.PlannedTrips == null)
+                Global.User.Calendar.PlannedTrips = new List<PlannedTrip>();
+
+
+            Global.User.Calendar.PlannedTrips.Add(trip);
+
+            peopleDataAccess.PutPersonAsync(Global.User);
 
             CommingTrips.ItemsSource = Global.CurrentCabin.Calendar.PlannedTrips;
+
 
         }
 

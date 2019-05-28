@@ -36,14 +36,14 @@ namespace CabinPlanner.DataAccess
                 .HasForeignKey(sc => sc.CabinId);
         }
 
-        public class EntertainmentContextFactory : IDesignTimeDbContextFactory<CabinPlannerContext>
+        public class CabinPlannerContextFactory : IDesignTimeDbContextFactory<CabinPlannerContext>
         {
             public CabinPlannerContext CreateDbContext(string[] args)
             {
                 var connection = "Data Source=Donau.hiof.no;Initial Catalog=denniss;Persist Security Info=True;User ID=denniss;Password=6WVewQKT";
 
                 var optionsBuilder = new DbContextOptionsBuilder<CabinPlannerContext>();
-                optionsBuilder.UseSqlServer(connection, x => x.MigrationsAssembly("Entertainment.MaintainDatabase.ConsoleApp"));
+                optionsBuilder.UseSqlServer(connection, x => x.MigrationsAssembly("CabinPlanner.DataAccess"));
 
                 return new CabinPlannerContext(optionsBuilder.Options);
             }

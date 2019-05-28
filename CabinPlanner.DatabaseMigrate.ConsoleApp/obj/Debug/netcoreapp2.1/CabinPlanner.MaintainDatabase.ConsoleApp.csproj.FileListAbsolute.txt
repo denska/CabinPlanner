@@ -1,0 +1,16 @@
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\bin\Debug\netcoreapp2.1\CabinPlanner.MaintainDatabase.ConsoleApp.deps.json
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\bin\Debug\netcoreapp2.1\CabinPlanner.MaintainDatabase.ConsoleApp.runtimeconfig.json
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\bin\Debug\netcoreapp2.1\CabinPlanner.MaintainDatabase.ConsoleApp.runtimeconfig.dev.json
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\bin\Debug\netcoreapp2.1\CabinPlanner.MaintainDatabase.ConsoleApp.dll
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\bin\Debug\netcoreapp2.1\CabinPlanner.MaintainDatabase.ConsoleApp.pdb
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\bin\Debug\netcoreapp2.1\CabinPlanner.DataAccess.dll
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\bin\Debug\netcoreapp2.1\CabinPlanner.Model.dll
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\bin\Debug\netcoreapp2.1\CabinPlanner.DataAccess.pdb
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\bin\Debug\netcoreapp2.1\CabinPlanner.Model.pdb
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\obj\Debug\netcoreapp2.1\CabinPlanner.MaintainDatabase.ConsoleApp.csprojAssemblyReference.cache
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\obj\Debug\netcoreapp2.1\CabinPlanner.MaintainDatabase.ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\obj\Debug\netcoreapp2.1\CabinPlanner.MaintainDatabase.ConsoleApp.AssemblyInfoInputs.cache
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\obj\Debug\netcoreapp2.1\CabinPlanner.MaintainDatabase.ConsoleApp.AssemblyInfo.cs
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\obj\Debug\netcoreapp2.1\CabinPlanner.MaintainDatabase.ConsoleApp.csproj.CopyComplete
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\obj\Debug\netcoreapp2.1\CabinPlanner.MaintainDatabase.ConsoleApp.dll
+C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.DatabaseMigrate.ConsoleApp\obj\Debug\netcoreapp2.1\CabinPlanner.MaintainDatabase.ConsoleApp.pdb

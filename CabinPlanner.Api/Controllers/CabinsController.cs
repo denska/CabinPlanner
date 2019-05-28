@@ -47,6 +47,29 @@ namespace CabinPlanner.Api.Controllers
             return Ok(cabin);
         }
 
+        // GET: api/people/*id*/cabins
+        [HttpGet("{id}/people")]
+        public async Task<IActionResult> GetCabinPeople([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var cabinUsers = await _context.CabinsUsers.Where(x => x.CabinId == id).ToListAsync();
+            if (cabinUsers == null)
+            {
+                return NotFound();
+            }
+
+            List<Person> cabinPeople = new List<Person>();
+            foreach (CabinUser cabinUser in cabinUsers)
+            {
+                cabinPeople.Add(await _context.People.FindAsync(cabinUser.PersonId));
+            }
+            return Ok(cabinPeople);
+        }
+
         // PUT: api/Cabins/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCabin([FromRoute] int id, [FromBody] Cabin cabin)

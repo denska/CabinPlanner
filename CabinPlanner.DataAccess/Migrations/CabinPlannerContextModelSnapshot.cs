@@ -156,7 +156,7 @@ namespace CabinPlanner.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CabinPlanner.Model.Person", "Person")
-                        .WithMany("CabinsAccess")
+                        .WithMany("AccessToCabins")
                         .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

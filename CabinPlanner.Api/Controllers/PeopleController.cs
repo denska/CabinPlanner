@@ -30,7 +30,7 @@ namespace CabinPlanner.Api.Controllers
 
         // GET: api/People/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetPerson([FromRoute] int id)
+        public async Task<IActionResult> GetPerson([FromRoute] int id, [FromQuery] bool withCourses = true)
         {
             if (!ModelState.IsValid)
             {
@@ -43,17 +43,39 @@ namespace CabinPlanner.Api.Controllers
             {
                 return NotFound();
             }
-
-            /*
-            if (true)  // include course information
+            
+            if (withCourses)  // include course information
                 _context.People
                     .Where(s => s.PersonId == id)
-                    .Include(s => s.CabinsAccess)
+                    .Include(s => s.AccessToCabins)
                     .ThenInclude(cu => cu.Cabin)
                     .Load();
-            */
+            
 
             return Ok(person);
+        }
+
+        // GET: api/people/*id*/cabins
+        [HttpGet("{id}/cabins")]
+        public async Task<IActionResult> GetPersonCabinAsync([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var cabinUsers = await _context.CabinsUsers.Where(x => x.PersonId == id).ToListAsync();
+            if (cabinUsers == null)
+            {
+                return NotFound();
+            }
+
+            List<Cabin> personCabins = new List<Cabin>();
+            foreach (CabinUser cabinUser in cabinUsers)
+            {
+                personCabins.Add(await _context.Cabins.FindAsync(cabinUser.CabinId));
+            }
+            return Ok(personCabins);
         }
 
         // PUT: api/People/5
