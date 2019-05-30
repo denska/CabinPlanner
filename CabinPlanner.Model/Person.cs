@@ -23,7 +23,7 @@ namespace CabinPlanner.Model
 
 
         public DateTime DateOfBirth { get; set; }
-        public Calendar Calendar { get; set; }
+        public Calendar Calendar { get; set; } = new Calendar();
         public Family Family { get; set; }
 
         public ICollection<CabinUser> AccessToCabins { get; } = new List<CabinUser>();

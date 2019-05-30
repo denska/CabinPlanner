@@ -13,15 +13,15 @@
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <TextBlock x:Name="cabinsNtripsTxt" HorizontalAlignment="Left" Margin="91,30,0,0" Text="Cabins and Trips" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="40"/>
-            <ListView Name="Cabins" Margin="0,166,1073,500" SelectionChanged="Cabins_SelectionChanged">
+            <TextBlock x:Name="cabinsNtripsTxt" HorizontalAlignment="Left" Margin="91,30,0,0" Text="Cabins and Trips" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="40"/>
+            <ListView Name="Cabins" Margin="0,166,1073,484" SelectionChanged="Cabins_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Cabin">
                         <TextBlock x:Name="LocationTextBlock">
                                 <Run Text="{x:Bind CabinName}"></Run>
                                 <Run FontWeight="Bold">Owner: </Run>
-                                <LineBreak />
                                 <Run Text="{x:Bind CabinOwner.ToString()}"></Run>
+                                <LineBreak />
                         </TextBlock>
 
                     </DataTemplate>

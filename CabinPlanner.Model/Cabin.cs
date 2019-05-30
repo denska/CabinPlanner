@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CabinPlanner.Model
 {
-
+    [Table("Cabin")]
     public class Cabin
     {
         public int CabinId { get; set; }
@@ -14,7 +14,7 @@ namespace CabinPlanner.Model
 
         public Person CabinOwner { get; set; }
 
-        public Calendar Calendar { get; set; }
+        public Calendar Calendar { get; set; } = new Calendar();
 
         public ICollection<CabinUser> CabinUsers { get; } = new List<CabinUser>();
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CabinPlanner.App.DataAccess;
 using CabinPlanner.App.ViewModels;
 using CabinPlanner.Model;
 using Newtonsoft.Json;
@@ -15,7 +16,8 @@ namespace CabinPlanner.App.Views
         static Uri PeopleBaseUri = new Uri("http://localhost:52981/api/people");
         HttpClient _httpClient = new HttpClient();
 
-        ICollection<Person> people;
+        private People peopleDataAccess = new People();
+
 
         public LoginPage()
         {
@@ -27,22 +29,16 @@ namespace CabinPlanner.App.Views
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             
-            var result = await _httpClient.GetAsync(PeopleBaseUri);
-            var json = await result.Content.ReadAsStringAsync();
-            people = JsonConvert.DeserializeObject<Person[]>(json);
             
         }
 
 
+
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            var result = await _httpClient.GetAsync(PeopleBaseUri);
-            var json = await result.Content.ReadAsStringAsync();
-            people = JsonConvert.DeserializeObject<Person[]>(json);
           
             
-            foreach (Person p in people)
+            foreach (Person p in await peopleDataAccess.GetPeopleAsync())
             {
                 if (p.Email == emailField.Text && p.Password == passwordField.Password)
                 {
@@ -53,13 +49,21 @@ namespace CabinPlanner.App.Views
                 }
             }
 
-            
+            //Loggin failed    
 
         }
 
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(RegisterPage));
+        }
+
+        private void EnterKeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                Button_Click(sender, e);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using CabinPlanner.App.DataAccess;
 using CabinPlanner.App.ViewModels;
 using CabinPlanner.Model;
 using Newtonsoft.Json;
@@ -14,6 +15,8 @@ namespace CabinPlanner.App.Views
     {
         public NewCabinViewModel ViewModel { get; } = new NewCabinViewModel();
 
+        private People peopleDataAccess = new People();
+        private Cabins cabinsDataAccess = new Cabins();
 
         ObservableCollection<Person> peopleWithoutAccess;
         ObservableCollection<Person> peopleWaccess;
@@ -38,10 +41,17 @@ namespace CabinPlanner.App.Views
             var json = await result.Content.ReadAsStringAsync();
             var cabins = JsonConvert.DeserializeObject<Cabin[]>(json);
             */
-            peopleWithoutAccess = new ObservableCollection<Person>(MyTestData.GetInstance().People);
+
+            CabinOwnerField.Text = Global.User.ToString();
+
+            peopleWithoutAccess = new ObservableCollection<Person>(await peopleDataAccess.GetPeopleAsync());
             peopleWaccess = new ObservableCollection<Person>();
+
+            //peopleWithoutAccess.Remove(Global.User);
+            //peopleWaccess.Add(Global.User);
+
             PeopleWithoutAccess.ItemsSource = peopleWithoutAccess;
-            //PeopleWithAccess.ItemsSource = peopleWaccess; 
+            PeopleWithAccess.ItemsSource = peopleWaccess;
         }
 
 
@@ -49,20 +59,23 @@ namespace CabinPlanner.App.Views
         {
             try
             {
-                var cabin = new Cabin { CabinName = cabinNameField.Text, CabinOwner = Global.User, Calendar = new Calendar() };
+                var cabin = new Cabin { CabinName = cabinNameField.Text, Calendar = new Calendar()};
 
-                MyTestData.GetInstance().Cabins.Add(cabin);
+                //bool a =  await cabinsDataAccess.AddCabinAsync(cabin);
 
-                if (Global.User.AccessToCabins == null)
-                    
+                var json = JsonConvert.SerializeObject(cabin);
+                
+                var result = await _httpClient.PostAsync(Cabins.cabinsBaseUri, new HttpStringContent(json, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
 
-                Global.User.AccessToCabins.Add(new CabinUser() {CabinId = cabin.CabinId, Cabin = cabin, PersonId = Global.User.PersonId, Person = Global.User });
+                cabin.CabinOwner = Global.User;
 
                 foreach (Person p in peopleWaccess)
                 {
-                    
-                    Global.User.AccessToCabins.Add(new CabinUser() { CabinId = cabin.CabinId, Cabin = cabin, PersonId = p.PersonId, Person = p });
+                    await cabinsDataAccess.PutCabinPersonAsync(cabin, p);
                 }
+
+
+                Global.CurrentCabin = cabin;
 
                 //Global.User.Cabins.Add(cabin);
                 /*
@@ -110,7 +123,7 @@ namespace CabinPlanner.App.Views
         {
             while (source.SelectedItems.Count > 0)
             {
-                ListViewItem temp = (ListViewItem) source.SelectedItems[0];
+                ListViewItem temp = (ListViewItem)source.SelectedItems[0];
                 source.Items.Remove(temp);
                 target.Items.Add(temp);
             }

@@ -37,7 +37,7 @@ namespace CabinPlanner.DataAccess.Migrations
 
                     b.HasIndex("CalendarId");
 
-                    b.ToTable("Cabins");
+                    b.ToTable("Cabin");
                 });
 
             modelBuilder.Entity("CabinPlanner.Model.CabinUser", b =>

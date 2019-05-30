@@ -11,7 +11,7 @@ namespace CabinPlanner.App.DataAccess
     public class Cabins
     {
         readonly HttpClient _httpClient = new HttpClient();
-        static readonly Uri cabinsBaseUri = new Uri("http://localhost:52981/api/cabins");
+        public static readonly Uri cabinsBaseUri = new Uri("http://localhost:52981/api/cabins");
 
         public async Task<Cabin[]> GetCabinsAsync()
         {
@@ -50,8 +50,12 @@ namespace CabinPlanner.App.DataAccess
 
         internal async Task<bool> AddCabinAsync(Cabin cabin)
         {
-            string json = JsonConvert.SerializeObject(cabin);
-            HttpResponseMessage result = await _httpClient.PostAsync(cabinsBaseUri, new StringContent(json, Encoding.UTF8, "application/json"));
+            //string json = JsonConvert.SerializeObject(cabin);
+            //HttpResponseMessage result = await _httpClient.PostAsync(cabinsBaseUri, new StringContent(json, Encoding.UTF8, "application/json"));
+
+            var json = JsonConvert.SerializeObject(cabin);
+
+            var result = await _httpClient.PostAsync(cabinsBaseUri, new StringContent(json, Encoding.UTF8, "application/json"));
 
             if (result.IsSuccessStatusCode)
             {
@@ -65,9 +69,23 @@ namespace CabinPlanner.App.DataAccess
                 return false;
         }
 
-        internal async Task<bool> DeletePersonAsync(Cabin cabin)
+        internal async Task<bool> PutCabinAsync(Cabin cabin)
         {
-            HttpResponseMessage result = await _httpClient.DeleteAsync(new Uri(cabinsBaseUri, "/" + cabin.CabinId.ToString()));
+            string json = JsonConvert.SerializeObject(cabin);
+            HttpResponseMessage result = await _httpClient.PutAsync(new Uri(cabinsBaseUri, "cabins/" + cabin.CabinId.ToString()), new StringContent(json, Encoding.UTF8, "application/json"));
+            return result.IsSuccessStatusCode;
+        }
+
+        internal async Task<bool> PutCabinPersonAsync(Cabin cabin , Person person)
+        {
+            string json = JsonConvert.SerializeObject(cabin);
+            HttpResponseMessage result = await _httpClient.PutAsync(new Uri(cabinsBaseUri, "cabins/" + cabin.CabinId.ToString()) + "/people/" + person.PersonId.ToString(), new StringContent(json, Encoding.UTF8, "application/json"));
+            return result.IsSuccessStatusCode;
+        }
+
+        internal async Task<bool> DeleteCabinAsync(Cabin cabin)
+        {
+            HttpResponseMessage result = await _httpClient.DeleteAsync(new Uri(cabinsBaseUri, "cabins/" + cabin.CabinId.ToString()));
             return result.IsSuccessStatusCode;
         }
     }

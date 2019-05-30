@@ -30,7 +30,7 @@ namespace CabinPlanner.Api.Controllers
 
         // GET: api/People/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetPerson([FromRoute] int id, [FromQuery] bool withCourses = true)
+        public async Task<IActionResult> GetPerson([FromRoute] int id, [FromQuery] bool withAll = false)
         {
             if (!ModelState.IsValid)
             {
@@ -43,39 +43,76 @@ namespace CabinPlanner.Api.Controllers
             {
                 return NotFound();
             }
-            
-            if (withCourses)  // include course information
+
+            if (withAll)  // include course information
                 _context.People
                     .Where(s => s.PersonId == id)
+                    .Include(p => p.Calendar)
+                    .ThenInclude(ca => ca.PlannedTrips)
+                    .Include(p => p.Family)
                     .Include(s => s.AccessToCabins)
                     .ThenInclude(cu => cu.Cabin)
+                    .ThenInclude(ca => ca.CabinOwner)
                     .Load();
-            
+
 
             return Ok(person);
         }
 
         // GET: api/people/*id*/cabins
         [HttpGet("{id}/cabins")]
-        public async Task<IActionResult> GetPersonCabinAsync([FromRoute] int id)
+        public async Task<IActionResult> GetPersonCabinsAsync([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var cabinUsers = await _context.CabinsUsers.Where(x => x.PersonId == id).ToListAsync();
-            if (cabinUsers == null)
+            _context.People
+                .Where(s => s.PersonId == id)
+                .Include(s => s.AccessToCabins)
+                .ThenInclude(cu => cu.Cabin)
+                .ThenInclude(ca => ca.CabinOwner)
+                .Load();
+
+
+            var person = await _context.People.FindAsync(id);
+
+            if (person.AccessToCabins == null)
             {
                 return NotFound();
             }
 
             List<Cabin> personCabins = new List<Cabin>();
-            foreach (CabinUser cabinUser in cabinUsers)
+            foreach (CabinUser cabinUser in person.AccessToCabins)
             {
-                personCabins.Add(await _context.Cabins.FindAsync(cabinUser.CabinId));
+                personCabins.Add(cabinUser.Cabin);
             }
             return Ok(personCabins);
+        }
+
+        // GET: api/students/5/courses/3
+        [HttpGet("{id}/cabins/{cabinId}")]
+        public async Task<IActionResult> GetPersonsCabin([FromRoute] int id, [FromRoute] int cabinId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!CabinPersonExists(cabinId, id))
+            {
+                return NotFound();
+            }
+
+            var cabin = await _context.Cabins.FindAsync(cabinId);
+
+            if (cabin == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(cabin);
         }
 
         // PUT: api/People/5
@@ -111,6 +148,27 @@ namespace CabinPlanner.Api.Controllers
             }
 
             return NoContent();
+        }
+
+        // PUT: api/students/5/courses/3
+        [HttpPut("{id}/Cabins/{cabinId}")]
+        public async Task<IActionResult> AddPersonToCabin([FromRoute] int id, [FromRoute] int cabinId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (CabinPersonExists(cabinId, id))
+            {
+                return NoContent();
+            }
+
+            var cabinUser = new CabinUser { PersonId = id, CabinId = cabinId };
+            _context.CabinUsers.Add(cabinUser);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetPersonsCabin", new { cabinId, id }, cabinUser);
         }
 
         // POST: api/People
@@ -152,6 +210,10 @@ namespace CabinPlanner.Api.Controllers
         private bool PersonExists(int id)
         {
             return _context.People.Any(e => e.PersonId == id);
+        }
+        private bool CabinPersonExists(int cabinId, int personId)
+        {
+            return _context.CabinUsers.Any(sc => sc.CabinId == cabinId && sc.PersonId == personId);
         }
     }
 }

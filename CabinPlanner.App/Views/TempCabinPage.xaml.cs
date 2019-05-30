@@ -32,8 +32,9 @@ namespace CabinPlanner.App.Views
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Cabins.ItemsSource = await peopleDataAccess.GetPersonCabinsAsync(Global.User);
+            ICollection<Cabin> cabins = new List<Cabin>(await peopleDataAccess.GetPersonCabinsAsync(Global.User));
             addTripBtn.IsEnabled = false;
+            Cabins.ItemsSource = cabins;
         }
 
         private void AddCabinBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -45,9 +46,18 @@ namespace CabinPlanner.App.Views
         {
             Global.CurrentCabin = (Cabin)Cabins.SelectedItem;
 
+
+
             if (Global.CurrentCabin.Calendar != null)
+            {
                 if (Global.CurrentCabin.Calendar.PlannedTrips != null)
+                {
                     CommingTrips.ItemsSource = Global.CurrentCabin.Calendar.PlannedTrips;
+                    return;
+                }
+            }
+
+            CommingTrips.ItemsSource = null;
 
         }
 
@@ -66,7 +76,7 @@ namespace CabinPlanner.App.Views
             }
         }
 
-        private void AddTripBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void AddTripBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             addTripBtn.IsEnabled = true;
 
@@ -85,7 +95,6 @@ namespace CabinPlanner.App.Views
             else if (Global.CurrentCabin.Calendar.PlannedTrips == null)
                 Global.CurrentCabin.Calendar.PlannedTrips = new List<PlannedTrip>();
 
-            Global.CurrentCabin.Calendar.PlannedTrips.Add(trip);
 
 
             if (Global.User.Calendar == null)
@@ -98,8 +107,10 @@ namespace CabinPlanner.App.Views
 
 
             Global.User.Calendar.PlannedTrips.Add(trip);
+            Global.CurrentCabin.Calendar.PlannedTrips.Add(trip);
 
-            peopleDataAccess.PutPersonAsync(Global.User);
+            await cabinsDataAccess.PutCabinAsync(Global.CurrentCabin);
+            await peopleDataAccess.PutPersonAsync(Global.User);
 
             CommingTrips.ItemsSource = Global.CurrentCabin.Calendar.PlannedTrips;
 

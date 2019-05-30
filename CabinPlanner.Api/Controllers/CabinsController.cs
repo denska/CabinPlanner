@@ -47,27 +47,28 @@ namespace CabinPlanner.Api.Controllers
             return Ok(cabin);
         }
 
-        // GET: api/people/*id*/cabins
-        [HttpGet("{id}/people")]
-        public async Task<IActionResult> GetCabinPeople([FromRoute] int id)
+        // GET: api/students/5/courses/3
+        [HttpGet("{id}/people/{personId}")]
+        public async Task<IActionResult> GetCabinsPerson([FromRoute] int id, [FromRoute] int personId)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var cabinUsers = await _context.CabinsUsers.Where(x => x.CabinId == id).ToListAsync();
-            if (cabinUsers == null)
+            if (!CabinPersonExists(id, personId))
             {
                 return NotFound();
             }
 
-            List<Person> cabinPeople = new List<Person>();
-            foreach (CabinUser cabinUser in cabinUsers)
+            var person = await _context.People.FindAsync(personId);
+
+            if (person == null)
             {
-                cabinPeople.Add(await _context.People.FindAsync(cabinUser.PersonId));
+                return NotFound();
             }
-            return Ok(cabinPeople);
+
+            return Ok(person);
         }
 
         // PUT: api/Cabins/5
@@ -103,6 +104,27 @@ namespace CabinPlanner.Api.Controllers
             }
 
             return NoContent();
+        }
+
+        // PUT: api/students/5/courses/3
+        [HttpPut("{id}/people/{personId}")]
+        public async Task<IActionResult> AddPersonToCabin([FromRoute] int id, [FromRoute] int personId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (CabinPersonExists(id, personId))  // check if student already attends the course, if so return 204
+            {
+                return NoContent();
+            }
+
+            var cabinUser = new CabinUser { PersonId = personId, CabinId = id };
+            _context.CabinUsers.Add(cabinUser);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetCabinsPerson", new { personId, id }, cabinUser);
         }
 
         // POST: api/Cabins
@@ -144,6 +166,10 @@ namespace CabinPlanner.Api.Controllers
         private bool CabinExists(int id)
         {
             return _context.Cabins.Any(e => e.CabinId == id);
+        }
+        private bool CabinPersonExists(int cabinId, int personId)
+        {
+            return _context.CabinUsers.Any(sc => sc.CabinId == cabinId && sc.PersonId == personId);
         }
     }
 }

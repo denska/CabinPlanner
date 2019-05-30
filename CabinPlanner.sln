@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabinPlanner.App", "CabinPl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CabinPlanner.App.Core", "CabinPlanner.App.Core\CabinPlanner.App.Core.csproj", "{8D6152FB-E2A2-4923-8954-86B17880B6B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabinPlanner.MaintainDatabase.ConsoleApp", "CabinPlanner.DatabaseMigrate.ConsoleApp\CabinPlanner.MaintainDatabase.ConsoleApp.csproj", "{40267CC6-3C03-4069-8EF9-7EDBEA193DC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CabinPlanner.MaintainDatabase.ConsoleApp", "CabinPlanner.DatabaseMigrate.ConsoleApp\CabinPlanner.MaintainDatabase.ConsoleApp.csproj", "{40267CC6-3C03-4069-8EF9-7EDBEA193DC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

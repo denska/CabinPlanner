@@ -35,6 +35,7 @@ namespace CabinPlanner.App.DataAccess
             HttpResponseMessage result = await _httpClient.GetAsync(new Uri(peopleBaseUri, "people/" + person.PersonId.ToString() + "/cabins"));
             string json = await result.Content.ReadAsStringAsync();
             Cabin[] cabins = JsonConvert.DeserializeObject<Cabin[]>(json);
+
             return cabins;
         }
 
@@ -74,7 +75,7 @@ namespace CabinPlanner.App.DataAccess
 
         internal async Task<bool> DeletePersonAsync(Person person)
         {
-            HttpResponseMessage result = await _httpClient.DeleteAsync(new Uri(peopleBaseUri, "actors/" + person.PersonId.ToString()));
+            HttpResponseMessage result = await _httpClient.DeleteAsync(new Uri(peopleBaseUri, "people/" + person.PersonId.ToString()));
             return result.IsSuccessStatusCode;
         }
     }

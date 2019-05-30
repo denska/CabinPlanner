@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CabinPlanner.App.DataAccess;
 using CabinPlanner.App.ViewModels;
 using CabinPlanner.Model;
 using Newtonsoft.Json;
@@ -12,6 +13,9 @@ namespace CabinPlanner.App.Views
     public sealed partial class RegisterPage : Page
     {
         public RegisterViewModel ViewModel { get; } = new RegisterViewModel();
+
+
+        People peopleDataAccess = new People();
 
         static Uri PeopleBaseUri = new Uri("http://localhost:52981/api/people");
         HttpClient _httpClient = new HttpClient();
@@ -40,10 +44,12 @@ namespace CabinPlanner.App.Views
             {
                 
                 var person = new Person { FirstName = firstNameField.Text, LastName = lastNameField.Text, Email = emailField.Text, Password = passwordField.Password, DateOfBirth = birthdayField.Date.UtcDateTime, IsMan = (bool)isMan.IsChecked };
-                
-                var json = JsonConvert.SerializeObject(person);
 
-                var result = await _httpClient.PostAsync(PeopleBaseUri, new HttpStringContent(json, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));               
+                //var json = JsonConvert.SerializeObject(person);
+                //
+                //var result = await _httpClient.PostAsync(PeopleBaseUri, new HttpStringContent(json, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));               
+
+                await peopleDataAccess.AddPersonAsync(person);
 
                 Global.User = person;
                 this.Frame.Navigate(typeof(MainPage));
