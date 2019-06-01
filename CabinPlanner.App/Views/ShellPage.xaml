@@ -33,9 +33,6 @@
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
             <winui:NavigationViewItem x:Uid="Shell_Main" Icon="Document" helpers:NavHelper.NavigateTo="views:MainPage" />
-            <winui:NavigationViewItem x:Uid="Shell_Cabins" Icon="Document" helpers:NavHelper.NavigateTo="views:CabinsPage" />
-            <winui:NavigationViewItem x:Uid="Shell_Family" Icon="Document" helpers:NavHelper.NavigateTo="views:FamilyPage" />
-            <winui:NavigationViewItem x:Uid="Shell_Relations" Icon="Document" helpers:NavHelper.NavigateTo="views:RelationsPage" />
             <winui:NavigationViewItem x:Uid="Shell_TempCabin" Icon="Document" helpers:NavHelper.NavigateTo="views:TempCabinPage" />
             </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>

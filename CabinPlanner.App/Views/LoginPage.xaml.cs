@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using CabinPlanner.App.DataAccess;
 using CabinPlanner.App.ViewModels;
 using CabinPlanner.Model;
-using Newtonsoft.Json;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Web.Http;
@@ -13,7 +11,7 @@ namespace CabinPlanner.App.Views
     public sealed partial class LoginPage : Page
     {
         public LoginViewModel ViewModel { get; } = new LoginViewModel();
-        static Uri PeopleBaseUri = new Uri("http://localhost:52981/api/people");
+
         HttpClient _httpClient = new HttpClient();
 
         private People peopleDataAccess = new People();
@@ -26,13 +24,9 @@ namespace CabinPlanner.App.Views
 
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            
         }
-
-
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -42,14 +36,13 @@ namespace CabinPlanner.App.Views
             {
                 if (p.Email == emailField.Text && p.Password == passwordField.Password)
                 {
-                    Global.User = p;
-                    //emailField.Text = ("Worked! User: " + Global.User.ToString());
+                    Global.User = await peopleDataAccess.GetPersonAsync(p);
                     this.Frame.Navigate(typeof(MainPage));
                     break;
                 }
             }
 
-            //Loggin failed    
+            errorTxt.Text = "*Login error";
 
         }
 

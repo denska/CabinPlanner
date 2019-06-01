@@ -11,13 +11,14 @@
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <TextBlock x:ConnectionId='3' x:Name="loginTxt" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Top" Height="90" Width="158" FontSize="50" RenderTransformOrigin="-1.022,0.462" Margin="0,341,0,0"><Run Text="Login"/><LineBreak/><Run/></TextBlock>
-            <TextBox x:ConnectionId='4' x:Name="emailField" HorizontalAlignment="Center" Header="Email" Margin="0,408,0,0"  VerticalAlignment="Top" Width="400"  Height="60"                       />
-            <PasswordBox x:ConnectionId='5'  x:Name="passwordField" HorizontalAlignment="Center" Header="Password" Margin="0,479,0,0" VerticalAlignment="Top" Width="400" Height="60"                       />
-            <Button x:ConnectionId='6' x:Name="button" Content="Login" HorizontalAlignment="Center" Margin="285,555,0,0" VerticalAlignment="Top" Width="110" FontSize="20"                     />
+            <TextBlock x:ConnectionId='3' x:Name="loginTxt" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Height="90" Width="158" FontSize="50" RenderTransformOrigin="-1.022,0.462" Margin="447,224,0,0"><Run Text="Login"/><LineBreak/><Run/></TextBlock>
+            <TextBox x:ConnectionId='4' x:Name="emailField" HorizontalAlignment="Left" Header="Email" Margin="326,297,0,0"  VerticalAlignment="Top" Width="400"  Height="60"                       />
+            <PasswordBox x:ConnectionId='5'  x:Name="passwordField" HorizontalAlignment="Left" Header="Password" Margin="326,382,0,0" VerticalAlignment="Top" Width="400" Height="60"                       />
+            <Button x:ConnectionId='6' x:Name="button" Content="Login" HorizontalAlignment="Left" Margin="616,460,0,0" VerticalAlignment="Top" Width="110" FontSize="20"                     />
             <HyperlinkButton x:ConnectionId='7' Content="Register" FontSize="20"
                                               
-                 HorizontalAlignment="Center" Margin="-330,555,0,0" VerticalAlignment="Top"/>
+                 HorizontalAlignment="Left" Margin="326,460,0,0" VerticalAlignment="Top"/>
+            <TextBlock x:ConnectionId='8' x:Name="errorTxt" HorizontalAlignment="Left" Margin="616,297,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.-->
         </Grid>

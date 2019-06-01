@@ -13,15 +13,11 @@ namespace CabinPlanner.Model
         public int CalendarId { get; set; }
         [Required]
 
-        public ICollection<PlannedTrip> PlannedTrips { get; set; } = new List<PlannedTrip>();
 
 
-        public void AddTrips(List<PlannedTrip> trips)
-        {
-            foreach (PlannedTrip trip in trips)
-            {
-                PlannedTrips.Add(trip);
-            }
-        }
+        public ICollection<CalendarTrip> PlannedTrips { get; } = new List<CalendarTrip>();
+
+        //public ICollection<PlannedTrip> PlannedTrips { get; set; } = new List<PlannedTrip>();
+
     }
 }

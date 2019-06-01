@@ -9,8 +9,8 @@ namespace CabinPlanner.App.ViewModels
 {
     static class Global
     {
-        public static Person User { get; set; }
-        public static Cabin CurrentCabin { get; set; }
+        public static Person User { get; set; } = null;
+        public static Cabin CurrentCabin { get; set; } = null;
 
         public static Uri PeopleBaseUri { get; set; } = new Uri("http://localhost:52981/api/people");
         public static Uri CabinsBaseUri { get; set; } = new Uri("http://localhost:52981/api/cabins");

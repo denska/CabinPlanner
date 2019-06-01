@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using CabinPlanner.App.DataAccess;
 using CabinPlanner.App.ViewModels;
 using CabinPlanner.Model;
@@ -44,10 +43,6 @@ namespace CabinPlanner.App.Views
             {
                 
                 var person = new Person { FirstName = firstNameField.Text, LastName = lastNameField.Text, Email = emailField.Text, Password = passwordField.Password, DateOfBirth = birthdayField.Date.UtcDateTime, IsMan = (bool)isMan.IsChecked };
-
-                //var json = JsonConvert.SerializeObject(person);
-                //
-                //var result = await _httpClient.PostAsync(PeopleBaseUri, new HttpStringContent(json, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));               
 
                 await peopleDataAccess.AddPersonAsync(person);
 

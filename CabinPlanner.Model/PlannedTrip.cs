@@ -10,12 +10,14 @@ namespace CabinPlanner.Model
     {
         public int PlannedTripId { get; set; }
 
-        public int PersonId { get; set; }
         public Person Planner { get; set; }
 
         public string Comment { get; set; }
 
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
+
+
+        public ICollection<CalendarTrip> TripCalendars { get; } = new List<CalendarTrip>();
     }
 }

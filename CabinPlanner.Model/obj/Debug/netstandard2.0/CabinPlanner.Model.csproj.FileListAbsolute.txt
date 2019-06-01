@@ -6,4 +6,3 @@ C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Model\obj\Debug\netstanda
 C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Model\bin\Debug\netstandard2.0\CabinPlanner.Model.pdb
 C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Model\obj\Debug\netstandard2.0\CabinPlanner.Model.dll
 C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Model\obj\Debug\netstandard2.0\CabinPlanner.Model.pdb
-C:\Users\Skants\Source\Repos\CabinPlanner\CabinPlanner.Model\obj\Debug\netstandard2.0\CabinPlanner.Model.csprojAssemblyReference.cache

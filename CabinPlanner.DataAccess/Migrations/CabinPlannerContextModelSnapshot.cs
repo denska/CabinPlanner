@@ -15,7 +15,7 @@ namespace CabinPlanner.DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -62,6 +62,19 @@ namespace CabinPlanner.DataAccess.Migrations
                     b.HasKey("CalendarId");
 
                     b.ToTable("Calendar");
+                });
+
+            modelBuilder.Entity("CabinPlanner.Model.CalendarTrip", b =>
+                {
+                    b.Property<int>("CalendarId");
+
+                    b.Property<int>("PlannedTripId");
+
+                    b.HasKey("CalendarId", "PlannedTripId");
+
+                    b.HasIndex("PlannedTripId");
+
+                    b.ToTable("CalendarTrip");
                 });
 
             modelBuilder.Entity("CabinPlanner.Model.Family", b =>
@@ -118,21 +131,17 @@ namespace CabinPlanner.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CalendarId");
-
                     b.Property<string>("Comment");
 
                     b.Property<DateTime>("FromDate");
 
-                    b.Property<int>("PersonId");
+                    b.Property<int?>("PlannerPersonId");
 
                     b.Property<DateTime>("ToDate");
 
                     b.HasKey("PlannedTripId");
 
-                    b.HasIndex("CalendarId");
-
-                    b.HasIndex("PersonId");
+                    b.HasIndex("PlannerPersonId");
 
                     b.ToTable("PlannedTrip");
                 });
@@ -161,6 +170,19 @@ namespace CabinPlanner.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("CabinPlanner.Model.CalendarTrip", b =>
+                {
+                    b.HasOne("CabinPlanner.Model.Calendar", "Calendar")
+                        .WithMany("PlannedTrips")
+                        .HasForeignKey("CalendarId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CabinPlanner.Model.PlannedTrip", "PlannedTrip")
+                        .WithMany("TripCalendars")
+                        .HasForeignKey("PlannedTripId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("CabinPlanner.Model.Person", b =>
                 {
                     b.HasOne("CabinPlanner.Model.Calendar", "Calendar")
@@ -174,14 +196,9 @@ namespace CabinPlanner.DataAccess.Migrations
 
             modelBuilder.Entity("CabinPlanner.Model.PlannedTrip", b =>
                 {
-                    b.HasOne("CabinPlanner.Model.Calendar")
-                        .WithMany("PlannedTrips")
-                        .HasForeignKey("CalendarId");
-
                     b.HasOne("CabinPlanner.Model.Person", "Planner")
                         .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PlannerPersonId");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CabinPlanner.App.DataAccess;
 using CabinPlanner.App.ViewModels;
 using CabinPlanner.Model;
-using Newtonsoft.Json;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Web.Http;
@@ -21,10 +19,6 @@ namespace CabinPlanner.App.Views
         ObservableCollection<Person> peopleWithoutAccess;
         ObservableCollection<Person> peopleWaccess;
 
-        //ObservableCollection<Person> ObsPeople = peopleWaccess;
-
-
-
         HttpClient _httpClient = new HttpClient();
 
         public NewCabinPage()
@@ -36,20 +30,13 @@ namespace CabinPlanner.App.Views
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            /*
-            var result = await _httpClient.GetAsync(Global.CabinsBaseUri);
-            var json = await result.Content.ReadAsStringAsync();
-            var cabins = JsonConvert.DeserializeObject<Cabin[]>(json);
-            */
 
             CabinOwnerField.Text = Global.User.ToString();
 
             peopleWithoutAccess = new ObservableCollection<Person>(await peopleDataAccess.GetPeopleAsync());
             peopleWaccess = new ObservableCollection<Person>();
 
-            //peopleWithoutAccess.Remove(Global.User);
-            //peopleWaccess.Add(Global.User);
-
+            peopleWithoutAccess.Remove(Global.User);
             PeopleWithoutAccess.ItemsSource = peopleWithoutAccess;
             PeopleWithAccess.ItemsSource = peopleWaccess;
         }
@@ -59,35 +46,19 @@ namespace CabinPlanner.App.Views
         {
             try
             {
-                var cabin = new Cabin { CabinName = cabinNameField.Text, Calendar = new Calendar()};
+                Cabin cabin = new Cabin { CabinName = cabinNameField.Text, Calendar = new Calendar() };
 
-                //bool a =  await cabinsDataAccess.AddCabinAsync(cabin);
+                await cabinsDataAccess.AddCabinAsync(cabin);
+                await cabinsDataAccess.PutCabinOwnerAsync(cabin, Global.User);
 
-                var json = JsonConvert.SerializeObject(cabin);
-                
-                var result = await _httpClient.PostAsync(Cabins.cabinsBaseUri, new HttpStringContent(json, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
-
-                cabin.CabinOwner = Global.User;
-
+                await cabinsDataAccess.PutCabinPersonAsync(cabin, Global.User);
                 foreach (Person p in peopleWaccess)
                 {
-                    await cabinsDataAccess.PutCabinPersonAsync(cabin, p);
+                    if(!p.Equals(Global.User))
+                        await cabinsDataAccess.PutCabinPersonAsync(cabin, p);
                 }
 
-
                 Global.CurrentCabin = cabin;
-
-                //Global.User.Cabins.Add(cabin);
-                /*
-                var json = JsonConvert.SerializeObject(cabin);
-
-
-                var result = await _httpClient.PostAsync(Global.CabinsBaseUri, new HttpStringContent(json, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
-
-                //var json1 = JsonConvert.SerializeObject(Global.User);
-                //var result1 = await _httpClient.PostAsync(Global.CabinsBaseUri, new HttpStringContent(json1, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
-                */
-
 
                 this.Frame.Navigate(typeof(TempCabinPage));
 
@@ -102,20 +73,17 @@ namespace CabinPlanner.App.Views
         }
 
 
-        private async void MoveToAccessBtn_Click(object sender, RoutedEventArgs e)
+        private void MoveToAccessBtn_Click(object sender, RoutedEventArgs e)
         {
             var items = PeopleWithoutAccess.SelectedItems;
 
             foreach (Person person in items)
             {
                 peopleWaccess.Add(person);
-                //People.Items.Add(person);
                 peopleWithoutAccess.Remove(person);
-                //PeopleWithAccess.Items.Remove(person);
             }
             PeopleWithoutAccess.ItemsSource = peopleWithoutAccess;
             PeopleWithAccess.ItemsSource = peopleWaccess;
-            // Page_Loaded(sender, e);
         }
 
 
@@ -127,6 +95,19 @@ namespace CabinPlanner.App.Views
                 source.Items.Remove(temp);
                 target.Items.Add(temp);
             }
+        }
+
+        private void MoveFromAccessBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var items = PeopleWithAccess.SelectedItems;
+
+            foreach (Person person in items)
+            {
+                peopleWithoutAccess.Add(person);
+                peopleWaccess.Remove(person);
+            }
+            PeopleWithoutAccess.ItemsSource = peopleWithoutAccess;
+            PeopleWithAccess.ItemsSource = peopleWaccess;
         }
     }
 }

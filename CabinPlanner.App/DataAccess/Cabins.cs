@@ -22,11 +22,11 @@ namespace CabinPlanner.App.DataAccess
             return cabins;
         }
 
-        internal async Task<Person> GetCabinAsync(Cabin cabin)
+        internal async Task<Cabin> GetCabinAsync(Cabin cabin)
         {
             HttpResponseMessage result = await _httpClient.GetAsync(new Uri(cabinsBaseUri, "cabins/" + cabin.CabinId.ToString()));
             string json = await result.Content.ReadAsStringAsync();
-            Person dbCabin = JsonConvert.DeserializeObject<Person>(json);
+            Cabin dbCabin = JsonConvert.DeserializeObject<Cabin>(json);
             return dbCabin;
         }
 
@@ -34,8 +34,8 @@ namespace CabinPlanner.App.DataAccess
         {
             HttpResponseMessage result = await _httpClient.GetAsync(new Uri(cabinsBaseUri, "cabins/" + cabin.CabinId.ToString() + "/people"));
             string json = await result.Content.ReadAsStringAsync();
-            Person[] cabinUsers = JsonConvert.DeserializeObject<Person[]>(json);
-            return cabinUsers;
+            Person[] cabinPeople = JsonConvert.DeserializeObject<Person[]>(json);
+            return cabinPeople;
         }
 
         internal async Task<Cabin> GetCabinAsync(int cabinId)
@@ -80,6 +80,13 @@ namespace CabinPlanner.App.DataAccess
         {
             string json = JsonConvert.SerializeObject(cabin);
             HttpResponseMessage result = await _httpClient.PutAsync(new Uri(cabinsBaseUri, "cabins/" + cabin.CabinId.ToString()) + "/people/" + person.PersonId.ToString(), new StringContent(json, Encoding.UTF8, "application/json"));
+            return result.IsSuccessStatusCode;
+        }
+
+        internal async Task<bool> PutCabinOwnerAsync(Cabin cabin, Person person)
+        {
+            string json = JsonConvert.SerializeObject(cabin);
+            HttpResponseMessage result = await _httpClient.PutAsync(new Uri(cabinsBaseUri, "cabins/" + cabin.CabinId.ToString()) + "/owner/" + person.PersonId.ToString(), new StringContent(json, Encoding.UTF8, "application/json"));
             return result.IsSuccessStatusCode;
         }
 

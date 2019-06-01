@@ -17,16 +17,33 @@
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.-->
             <StackPanel>
-                <RelativePanel HorizontalAlignment="Stretch" Height="19" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                <RelativePanel HorizontalAlignment="Stretch" Height="997" Margin="0,0,0,0" VerticalAlignment="Stretch">
                     <TextBlock x:Name="NameTxt" Text="TextBlock" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="16,37,-656,-104" FontSize="40"/>
 
+                    <Button x:Name="button" Content="Delete Account" HorizontalAlignment="Left" Margin="611,58,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+                    <Button x:Name="button1" Content="Change name" HorizontalAlignment="Left" Margin="19,101,0,0" VerticalAlignment="Top" Click="Button1_Click"/>
+                    <TextBox x:Name="NameField" HorizontalAlignment="Left" Margin="16,37,0,0" Text="" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="40" Visibility="Collapsed" KeyDown="EnterKeyDown"/>
+                    <TextBlock x:Name="emailTxt" HorizontalAlignment="Left" Margin="517,22,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <Button x:Name="logoutBtn" Content="Logout" HorizontalAlignment="Left" Margin="514,58,0,0" VerticalAlignment="Top" Click="LogoutBtn_Click"/>
+                    <ListView Name="CommingTrips" Header="Comming Trips:" HorizontalAlignment="Left" Height="453"  VerticalAlignment="Top" Width="716" Margin="10,184,0,0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:PlannedTrip">
+                                <TextBlock x:Name="LocationTextBlock">
+                                <Run FontWeight="Bold">Description: </Run>
+                                <Run Text="{x:Bind Comment}"></Run>
+                                <LineBreak />
+                                <Run FontWeight="Bold">From: </Run>
+                                <Run Text="{x:Bind FromDate.ToShortDateString()}"></Run>
+                                <LineBreak />
+                                <Run FontWeight="Bold">To: </Run>
+                                <Run Text="{x:Bind ToDate.ToShortDateString()}"></Run>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </RelativePanel>
 
             </StackPanel>
-            <Button x:Name="button" Content="Delete Account" HorizontalAlignment="Left" Margin="10,248,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-            <Button x:Name="button1" Content="Change name" HorizontalAlignment="Left" Margin="19,101,0,0" VerticalAlignment="Top" Click="Button1_Click"/>
-            <TextBox x:Name="NameField" HorizontalAlignment="Left" Margin="16,37,0,0" Text="" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="40" Visibility="Collapsed" KeyDown="EnterKeyDown"/>
-            <TextBlock x:Name="emailTxt" HorizontalAlignment="Left" Margin="468,65,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top"/>
         </Grid>
     </Grid>
 </Page>

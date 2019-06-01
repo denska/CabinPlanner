@@ -11,14 +11,16 @@
     <Grid x:ConnectionId='2'
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
+        <RelativePanel
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <TextBox x:ConnectionId='3' x:Name="cabinNameField" HorizontalAlignment="Left" Margin="71,0,0,0" VerticalAlignment="Center" Width="363"
+            <TextBox x:ConnectionId='3' x:Name="cabinNameField" HorizontalAlignment="Left" Margin="71,300,0,0" VerticalAlignment="Top" Width="363"
                       Text="" PlaceholderText="Cabin name" Header="Cabin name" Height="66"/>
-            <TextBlock x:ConnectionId='4' x:Name="CabinOwnerField" HorizontalAlignment="Left" Margin="71,398,0,0" Text="Cabin Owner" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Width="364" FontSize="20"/>
-            <TextBlock x:ConnectionId='5' x:Name="textBlock" HorizontalAlignment="Left" Margin="71,374,0,0" Text="Cabin Owner" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="114"/>
-            <Button x:ConnectionId='6' x:Name="addCabinBtn" Content="Add Cabin" HorizontalAlignment="Left" Margin="349,555,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.061,0.719"                          />
-            <ListView x:ConnectionId='7' Name="PeopleWithoutAccess" Margin="466,199,673,467"  Header="People"                                            >
+            <TextBlock x:ConnectionId='4' x:Name="CabinOwnerField" HorizontalAlignment="Left" Margin="71,254,0,0" Text="Cabin Owner" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Width="364" FontSize="20"/>
+            <TextBlock x:ConnectionId='5' x:Name="textBlock" HorizontalAlignment="Left" Margin="71,230,0,0" Text="Cabin Owner" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="114"/>
+            <Button x:ConnectionId='6' x:Name="addCabinBtn" Content="Add Cabin" HorizontalAlignment="Left" Margin="349,405,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.061,0.719"                          />
+            <Button x:ConnectionId='7' x:Name="moveToAccessBtn" Content="->" HorizontalAlignment="Left" Margin="784,228,0,0" VerticalAlignment="Top"                              />
+            <Button x:ConnectionId='8' x:Name="moveFromAccessBtn" Content="&lt;-" HorizontalAlignment="Left" Margin="784,265,0,0" VerticalAlignment="Top"                                />
+            <ListView x:ConnectionId='9' Name="PeopleWithoutAccess" Margin="492,199,0,0"  Header="People"                                             VerticalAlignment="Top" Height="791" HorizontalAlignment="Left" Width="287">
                 <ListView.ItemTemplate>
                     <DataTemplate                          >
                         <TextBlock x:ConnectionId='13' x:Name="LocationTextBlock">
@@ -28,7 +30,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView x:ConnectionId='8' Name="PeopleWithAccess" Margin="825,199,306,467" Header="People with access" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"                                     >
+            <ListView x:ConnectionId='10' Name="PeopleWithAccess" Margin="825,0,0,-990" Header="People with access"                                      HorizontalAlignment="Left" Width="323" VerticalAlignment="Bottom" Height="791">
                 <ListView.ItemTemplate>
                     <DataTemplate                          >
                         <TextBlock x:ConnectionId='11' x:Name="LocationTextBlock">
@@ -37,12 +39,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button x:ConnectionId='9' x:Name="moveToAccessBtn" Content="->" HorizontalAlignment="Left" Margin="784,228,0,0" VerticalAlignment="Top"                              />
-            <Button x:ConnectionId='10' x:Name="moveFromAccessBtn" Content="&lt;-" HorizontalAlignment="Left" Margin="784,265,0,0" VerticalAlignment="Top"/>
 
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.-->
-        </Grid>
+        </RelativePanel>
     </Grid>
 </Page>
 

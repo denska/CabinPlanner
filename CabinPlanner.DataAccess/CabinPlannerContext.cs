@@ -16,6 +16,7 @@ namespace CabinPlanner.DataAccess
         public DbSet<PlannedTrip> PlannedTrips { get; set; }
         //public DbSet<Relation> Relations { get; set; }
         public DbSet<CabinUser> CabinUsers { get; set; }
+        public DbSet<CalendarTrip> CalendarTrips { get; set; }
 
         string ConnectionString = "Data Source=Donau.hiof.no;Initial Catalog=denniss;Persist Security Info=True;User ID=denniss;Password=6WVewQKT";
 
@@ -34,6 +35,17 @@ namespace CabinPlanner.DataAccess
                 .HasOne(sc => sc.Cabin)
                 .WithMany(c => c.CabinUsers)
                 .HasForeignKey(sc => sc.CabinId);
+
+            modelBuilder.Entity<CalendarTrip>()
+                .HasKey(sc => new { sc.CalendarId, sc.PlannedTripId });
+            modelBuilder.Entity<CalendarTrip>()
+                .HasOne(ct => ct.Calendar)
+                .WithMany(s => s.PlannedTrips)
+                .HasForeignKey(sc => sc.CalendarId);
+            modelBuilder.Entity<CalendarTrip>()
+                .HasOne(sc => sc.PlannedTrip)
+                .WithMany(c => c.TripCalendars)
+                .HasForeignKey(sc => sc.PlannedTripId);
         }
 
         public class CabinPlannerContextFactory : IDesignTimeDbContextFactory<CabinPlannerContext>

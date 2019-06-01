@@ -11,10 +11,17 @@
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
+        <RelativePanel
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <TextBlock x:Name="cabinsNtripsTxt" HorizontalAlignment="Left" Margin="91,30,0,0" Text="Cabins and Trips" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="40"/>
-            <ListView Name="Cabins" Margin="0,166,1073,484" SelectionChanged="Cabins_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock x:Name="cabinsNtripsTxt" HorizontalAlignment="Left" Margin="12,25,0,0" Text="Cabins and Trips" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="40"/>
+            <Button x:Name="addCabinBtn" Content="Add Cabin" HorizontalAlignment="Left" Margin="128,134,0,0" VerticalAlignment="Top" Click="AddCabinBtn_Click"/>
+            <CalendarView x:Name="tripCalendar" HorizontalAlignment="Left" Margin="629,88,0,0" VerticalAlignment="Top" Height="328" Width="296" SelectionMode="Multiple" SelectedDatesChanged="CalendarView_SelectedDatesChanged" />
+            <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="629,447,0,0" Text="Plan trip" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+            <TextBlock x:Name="toFromTxt" HorizontalAlignment="Left" Margin="719,471,0,0" Text="from and to date" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBox x:Name="descriptionField" HorizontalAlignment="Left" Margin="629,495,0,0" PlaceholderText="Description" VerticalAlignment="Top" Width="296"/>
+            <Button x:Name="addTripBtn" Content="Add trip" HorizontalAlignment="Left" Margin="863,534,0,0" VerticalAlignment="Top" Click="AddTripBtn_Click"/>
+
+            <ListView Name="Cabins" Header="Cabins:" Margin="12,166,0,0" Width="359" SelectionChanged="Cabins_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Height="314">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Cabin">
                         <TextBlock x:Name="LocationTextBlock">
@@ -27,31 +34,24 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView Name="CommingTrips" Margin="0,586,1073,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListView Name="CommingTrips" Header="Comming Trips:" Margin="12,485,0,0" HorizontalAlignment="Left" Width="359" VerticalAlignment="Top" Height="429">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:PlannedTrip">
                         <TextBlock x:Name="LocationTextBlock">
+                                <Run FontWeight="Bold">Description: </Run>
+                                <Run Text="{x:Bind Comment}"></Run>
+                                <LineBreak />
                                 <Run FontWeight="Bold">From: </Run>
-                                <Run Text="{x:Bind FromDate.ToShortDateString()}"></Run>
+                                <Run Text="{x:Bind FromDate.ToShortDateString()}"></Run>                                
                                 <LineBreak />
                                 <Run FontWeight="Bold">To: </Run>
                                 <Run Text="{x:Bind ToDate.ToShortDateString()}"></Run>
                         </TextBlock>
-
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <TextBlock x:Name="cabinTxt" HorizontalAlignment="Left" Margin="10,142,0,0" Text="Cabins" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <Button x:Name="addCabinBtn" Content="Add Cabin" HorizontalAlignment="Left" Margin="128,134,0,0" VerticalAlignment="Top" Click="AddCabinBtn_Click"/>
-            <TextBlock x:Name="tripTxt" HorizontalAlignment="Left" Margin="10,567,0,0" Text="Comming Trips" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <CalendarView x:Name="tripCalendar" HorizontalAlignment="Left" Margin="726,93,0,0" VerticalAlignment="Top" Height="310" Width="296" SelectionMode="Multiple" SelectedDatesChanged="CalendarView_SelectedDatesChanged" />
-            <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="726,452,0,0" Text="Plan trip" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
-            <TextBlock x:Name="toFromTxt" HorizontalAlignment="Left" Margin="816,476,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBox x:Name="descriptionField" HorizontalAlignment="Left" Margin="726,500,0,0" Text="Description" VerticalAlignment="Top" Width="296"/>
-            <Button x:Name="addTripBtn" Content="Add trip" HorizontalAlignment="Left" Margin="960,539,0,0" VerticalAlignment="Top" Click="AddTripBtn_Click"/>
-
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.-->
-        </Grid>
+        </RelativePanel>
     </Grid>
 </Page>

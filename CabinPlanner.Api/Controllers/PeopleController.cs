@@ -71,8 +71,11 @@ namespace CabinPlanner.Api.Controllers
             _context.People
                 .Where(s => s.PersonId == id)
                 .Include(s => s.AccessToCabins)
-                .ThenInclude(cu => cu.Cabin)
-                .ThenInclude(ca => ca.CabinOwner)
+                    .ThenInclude(cu => cu.Cabin)
+                        .ThenInclude(ca => ca.CabinOwner)
+                .Include(s => s.AccessToCabins)
+                    .ThenInclude(cu => cu.Cabin)
+                        .ThenInclude(ca => ca.Calendar)
                 .Load();
 
 
@@ -113,6 +116,36 @@ namespace CabinPlanner.Api.Controllers
             }
 
             return Ok(cabin);
+        }
+        /*
+        // GET: api/students/5/courses/3
+        [HttpGet("{calendarId}/plannedTrips/{ptId}")]
+        public async Task<IActionResult> GetPlannedTrip([FromRoute] int calendarId, [FromRoute] int ptId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            if (!CalendarTripExsists(calendarId, ptId))
+            {
+                return NotFound();
+            }
+
+
+            var plannedTrip = await _context.PlannedTrips.FindAsync(ptId);
+
+            if (plannedTrip == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(plannedTrip);
+        }
+        */
+        private bool CalendarTripExsists(int calendarId, int ptId)
+        {
+            return _context.PlannedTrips.Any(e => e.PlannedTripId == ptId);
         }
 
         // PUT: api/People/5
@@ -169,6 +202,30 @@ namespace CabinPlanner.Api.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPersonsCabin", new { cabinId, id }, cabinUser);
+        }
+
+        // PUT: api/students/5/courses/3
+        [HttpPut("{id}/Calendar/{calendarId}")]
+        public async Task<IActionResult> AddTripToCalendar([FromRoute] int id, [FromBody] PlannedTrip pt)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!PersonExists(id))
+            {
+                return NoContent();
+            }
+
+            CalendarTrip calendarTrip = new CalendarTrip() { CalendarId = _context.Cabins.Find(id).Calendar.CalendarId, PlannedTripId = pt.PlannedTripId };
+
+            _context.People.Find(id).Calendar.PlannedTrips.Add(calendarTrip);
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetPlannedTrip", new { id, pt.PlannedTripId }, _context.PlannedTrips.Find(pt.PlannedTripId));
+
         }
 
         // POST: api/People

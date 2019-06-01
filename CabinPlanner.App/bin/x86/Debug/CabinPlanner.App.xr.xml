@@ -103,6 +103,7 @@
       <RootProperty Name="Height" />
       <RootProperty Name="Margin" />
       <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Background" />
       <RootMethod Name="GetAlignTopWithPanel" />
       <RootMethod Name="SetAlignTopWithPanel" />
       <RootMethod Name="GetAlignLeftWithPanel" />
@@ -160,6 +161,8 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="ItemTemplate" />
       <RootProperty Name="Header" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
       <RootProperty Name="ItemsSource" />
       <RootEvent Name="SelectionChanged" />
     </RootType>

@@ -11,48 +11,48 @@
     <Grid x:ConnectionId='2'
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
+        <RelativePanel
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <TextBlock x:ConnectionId='3' x:Name="cabinsNtripsTxt" HorizontalAlignment="Left" Margin="91,30,0,0" Text="Cabins and Trips" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="40"/>
-            <ListView x:ConnectionId='4' Name="Cabins" Margin="0,166,1073,484"                                            HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock x:ConnectionId='3' x:Name="cabinsNtripsTxt" HorizontalAlignment="Left" Margin="12,25,0,0" Text="Cabins and Trips" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="40"/>
+            <Button x:ConnectionId='4' x:Name="addCabinBtn" Content="Add Cabin" HorizontalAlignment="Left" Margin="128,134,0,0" VerticalAlignment="Top"                          />
+            <CalendarView x:ConnectionId='5' x:Name="tripCalendar" HorizontalAlignment="Left" Margin="629,88,0,0" VerticalAlignment="Top" Height="328" Width="296" SelectionMode="Multiple"                                                          />
+            <TextBlock x:ConnectionId='6' x:Name="textBlock1" HorizontalAlignment="Left" Margin="629,447,0,0" Text="Plan trip" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
+            <TextBlock x:ConnectionId='7' x:Name="toFromTxt" HorizontalAlignment="Left" Margin="719,471,0,0" Text="from and to date" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBox x:ConnectionId='8' x:Name="descriptionField" HorizontalAlignment="Left" Margin="629,495,0,0" PlaceholderText="Description" VerticalAlignment="Top" Width="296"/>
+            <Button x:ConnectionId='9' x:Name="addTripBtn" Content="Add trip" HorizontalAlignment="Left" Margin="863,534,0,0" VerticalAlignment="Top"                         />
+
+            <ListView x:ConnectionId='10' Name="Cabins" Header="Cabins:" Margin="12,166,0,0" Width="359"                                            HorizontalAlignment="Left" VerticalAlignment="Top" Height="314">
                 <ListView.ItemTemplate>
                     <DataTemplate                         >
-                        <TextBlock x:ConnectionId='17' x:Name="LocationTextBlock">
-                                <Run x:ConnectionId='18'                          ></Run>
+                        <TextBlock x:ConnectionId='16' x:Name="LocationTextBlock">
+                                <Run x:ConnectionId='17'                          ></Run>
                                 <Run FontWeight="Bold">Owner: </Run>
-                                <Run x:ConnectionId='19'                                      ></Run>
+                                <Run x:ConnectionId='18'                                      ></Run>
                                 <LineBreak />
                         </TextBlock>
 
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView x:ConnectionId='5' Name="CommingTrips" Margin="0,586,1073,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListView x:ConnectionId='11' Name="CommingTrips" Header="Comming Trips:" Margin="12,485,0,0" HorizontalAlignment="Left" Width="359" VerticalAlignment="Top" Height="429">
                 <ListView.ItemTemplate>
                     <DataTemplate                               >
-                        <TextBlock x:ConnectionId='14' x:Name="LocationTextBlock">
+                        <TextBlock x:ConnectionId='12' x:Name="LocationTextBlock">
+                                <Run FontWeight="Bold">Description: </Run>
+                                <Run x:ConnectionId='13'                        ></Run>
+                                <LineBreak />
                                 <Run FontWeight="Bold">From: </Run>
-                                <Run x:ConnectionId='15'                                             ></Run>
+                                <Run x:ConnectionId='14'                                             ></Run>                                
                                 <LineBreak />
                                 <Run FontWeight="Bold">To: </Run>
-                                <Run x:ConnectionId='16'                                           ></Run>
+                                <Run x:ConnectionId='15'                                           ></Run>
                         </TextBlock>
-
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <TextBlock x:ConnectionId='6' x:Name="cabinTxt" HorizontalAlignment="Left" Margin="10,142,0,0" Text="Cabins" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <Button x:ConnectionId='7' x:Name="addCabinBtn" Content="Add Cabin" HorizontalAlignment="Left" Margin="128,134,0,0" VerticalAlignment="Top"                          />
-            <TextBlock x:ConnectionId='8' x:Name="tripTxt" HorizontalAlignment="Left" Margin="10,567,0,0" Text="Comming Trips" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <CalendarView x:ConnectionId='9' x:Name="tripCalendar" HorizontalAlignment="Left" Margin="726,93,0,0" VerticalAlignment="Top" Height="310" Width="296" SelectionMode="Multiple"                                                          />
-            <TextBlock x:ConnectionId='10' x:Name="textBlock1" HorizontalAlignment="Left" Margin="726,452,0,0" Text="Plan trip" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"/>
-            <TextBlock x:ConnectionId='11' x:Name="toFromTxt" HorizontalAlignment="Left" Margin="816,476,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBox x:ConnectionId='12' x:Name="descriptionField" HorizontalAlignment="Left" Margin="726,500,0,0" Text="Description" VerticalAlignment="Top" Width="296"/>
-            <Button x:ConnectionId='13' x:Name="addTripBtn" Content="Add trip" HorizontalAlignment="Left" Margin="960,539,0,0" VerticalAlignment="Top"                         />
-
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.-->
-        </Grid>
+        </RelativePanel>
     </Grid>
 </Page>
 

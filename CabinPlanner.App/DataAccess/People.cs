@@ -24,7 +24,7 @@ namespace CabinPlanner.App.DataAccess
 
         internal async Task<Person> GetPersonAsync(Person person)
         {
-            HttpResponseMessage result = await _httpClient.GetAsync(new Uri(peopleBaseUri, "people/" + person.PersonId.ToString()));
+            HttpResponseMessage result = await _httpClient.GetAsync(new Uri(peopleBaseUri, "people/" + person.PersonId.ToString() + "?WithAll=true" ));
             string json = await result.Content.ReadAsStringAsync();
             Person dbPerson = JsonConvert.DeserializeObject<Person>(json);
             return dbPerson;
